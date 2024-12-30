@@ -9,6 +9,7 @@ author:
 date: "16 November 2024"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
+documentclass: book
 github-repo: MiguelB147/dvw2425
 subtitle: Dag van de wetenschap & wiskunde - KULAK Kortrijk
 geometry: margin=3cm
@@ -21,7 +22,10 @@ knitr::opts_chunk$set(echo = TRUE,
                       warning = FALSE,
                       eval = TRUE,
                       tidy = FALSE)
-  
+```
+
+```{r packages}
 library(ggplot2)
 library(dplyr)
 ```
+
