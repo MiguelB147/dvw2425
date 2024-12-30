@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Hoofdstuk 3 Data types en structuren in R |   Introductie programmeren in R</title>
+  <meta name="description" content="Hoofdstuk 3 Data types en structuren in R |   Introductie programmeren in R" />
+  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Hoofdstuk 3 Data types en structuren in R |   Introductie programmeren in R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta name="github-repo" content="MiguelB147/dvw2425" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Hoofdstuk 3 Data types en structuren in R |   Introductie programmeren in R" />
+  
+  
+  
+
+
+
+<meta name="date" content="2024-11-16" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="commandos-in-r.html"/>
+<link rel="next" href="een-afsluiter.html"/>
+<script src="libs/jquery/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="wat-is-r.html"><a href="wat-is-r.html"><i class="fa fa-check"></i><b>1</b> Wat is R?</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="wat-is-r.html"><a href="wat-is-r.html#r-software-downloaden"><i class="fa fa-check"></i><b>1.1</b> R software downloaden</a></li>
+<li class="chapter" data-level="1.2" data-path="wat-is-r.html"><a href="wat-is-r.html#rstudio-software-downloaden"><i class="fa fa-check"></i><b>1.2</b> RStudio software downloaden</a></li>
+<li class="chapter" data-level="1.3" data-path="wat-is-r.html"><a href="wat-is-r.html#waarom-r"><i class="fa fa-check"></i><b>1.3</b> Waarom R?</a></li>
+<li class="chapter" data-level="1.4" data-path="wat-is-r.html"><a href="wat-is-r.html#het-r-dashboard"><i class="fa fa-check"></i><b>1.4</b> Het R dashboard</a></li>
+<li class="chapter" data-level="1.5" data-path="wat-is-r.html"><a href="wat-is-r.html#het-r-script"><i class="fa fa-check"></i><b>1.5</b> Het R script</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="commandos-in-r.html"><a href="commandos-in-r.html"><i class="fa fa-check"></i><b>2</b> Commando’s in R</a></li>
+<li class="chapter" data-level="3" data-path="data-types-en-structuren-in-r.html"><a href="data-types-en-structuren-in-r.html"><i class="fa fa-check"></i><b>3</b> Data types en structuren in R</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-types-en-structuren-in-r.html"><a href="data-types-en-structuren-in-r.html#numeric-data-type"><i class="fa fa-check"></i><b>3.1</b> Numeric data type</a></li>
+<li class="chapter" data-level="3.2" data-path="data-types-en-structuren-in-r.html"><a href="data-types-en-structuren-in-r.html#character-data-type"><i class="fa fa-check"></i><b>3.2</b> Character data type</a></li>
+<li class="chapter" data-level="3.3" data-path="data-types-en-structuren-in-r.html"><a href="data-types-en-structuren-in-r.html#vector-data-structuur"><i class="fa fa-check"></i><b>3.3</b> Vector data structuur</a></li>
+<li class="chapter" data-level="3.4" data-path="data-types-en-structuren-in-r.html"><a href="data-types-en-structuren-in-r.html#matrix-data-structuur"><i class="fa fa-check"></i><b>3.4</b> Matrix data structuur</a></li>
+<li class="chapter" data-level="3.5" data-path="data-types-en-structuren-in-r.html"><a href="data-types-en-structuren-in-r.html#list-data-structuur"><i class="fa fa-check"></i><b>3.5</b> List data structuur</a></li>
+<li class="chapter" data-level="3.6" data-path="data-types-en-structuren-in-r.html"><a href="data-types-en-structuren-in-r.html#dataframe-data-structuur"><i class="fa fa-check"></i><b>3.6</b> Dataframe data structuur</a></li>
+<li class="chapter" data-level="3.7" data-path="data-types-en-structuren-in-r.html"><a href="data-types-en-structuren-in-r.html#factor-data-type"><i class="fa fa-check"></i><b>3.7</b> Factor data type</a></li>
+<li class="chapter" data-level="3.8" data-path="data-types-en-structuren-in-r.html"><a href="data-types-en-structuren-in-r.html#logical-data-type"><i class="fa fa-check"></i><b>3.8</b> Logical data type</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="een-afsluiter.html"><a href="een-afsluiter.html"><i class="fa fa-check"></i><b>4</b> Een afsluiter</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">  Introductie programmeren in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-types-en-structuren-in-r" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Hoofdstuk 3</span> Data types en structuren in R<a href="data-types-en-structuren-in-r.html#data-types-en-structuren-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Er zijn verschillende <strong>data types</strong> die gebruikt worden in R:</p>
+<ul>
+<li>Numeric</li>
+<li>Character</li>
+<li>Factor</li>
+<li>Logical</li>
+</ul>
+<p>Elementen van bovenstaande datatypes kunnen gecombineerd worden in <strong>data structuren</strong>:</p>
+<ul>
+<li>Vector</li>
+<li>Data Frame</li>
+<li>Matrix</li>
+<li>List</li>
+</ul>
+<div id="numeric-data-type" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Numeric data type<a href="data-types-en-structuren-in-r.html#numeric-data-type" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Numerieke elementen</strong> zijn elementen met een getalwaarde. Met numerieke elementen kunnen bewerkingen uitgevoerd worden die opnieuw resulteren in een nieuw numeriek element.</p>
+<p>Om te controleren welk data type een bepaalde variabele heeft, kan de <em>str</em> functie
+gebruikt worden.</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="data-types-en-structuren-in-r.html#cb42-1" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb42-2"><a href="data-types-en-structuren-in-r.html#cb42-2" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">6</span></span>
+<span id="cb42-3"><a href="data-types-en-structuren-in-r.html#cb42-3" tabindex="-1"></a><span class="fu">str</span>(a)</span></code></pre></div>
+<pre><code>##  num 5</code></pre>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="data-types-en-structuren-in-r.html#cb44-1" tabindex="-1"></a><span class="fu">str</span>(b)</span></code></pre></div>
+<pre><code>##  num 6</code></pre>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="data-types-en-structuren-in-r.html#cb46-1" tabindex="-1"></a>a <span class="sc">+</span> b </span></code></pre></div>
+<pre><code>## [1] 11</code></pre>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="data-types-en-structuren-in-r.html#cb48-1" tabindex="-1"></a><span class="fu">str</span>(a <span class="sc">+</span> b)</span></code></pre></div>
+<pre><code>##  num 11</code></pre>
+<p>Binnen de klasse van numerieke elementen is er echter nog een opsplitsing van twee data types. Zo maakt R een onderscheid tussen gehele getallen en in het algemeen reële getallen die dus ook decimalen kunnen bevatten. R beschouwt getallen standaard als reëele getallen. Het element heeft dan data type <em>dbl</em> of <em>double</em>, wat staat voor <em>double precision</em>, duidend op het feit dat het ook decimale getallen kan aannemen als waarde. Gehele getallen, hebben het data type <em>int</em> (van het Engels: integer). Zij worden gespecifieerd door middel van de letter <em>L</em> achter het getal te plaatsen. Om het exacte data type na te gaan, kan de functie <em>typeof()</em> gebruikt worden. Een voorbeeld van de twee verschillende data types:</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="data-types-en-structuren-in-r.html#cb50-1" tabindex="-1"></a>c <span class="ot">&lt;-</span> 1000L <span class="co">#Dit beschouwt R als een geheel getal.</span></span>
+<span id="cb50-2"><a href="data-types-en-structuren-in-r.html#cb50-2" tabindex="-1"></a><span class="fu">typeof</span>(c)</span></code></pre></div>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="data-types-en-structuren-in-r.html#cb52-1" tabindex="-1"></a>q <span class="ot">&lt;-</span> <span class="dv">1000</span> <span class="co">#Dit beschouwt R als een reëel getal.</span></span>
+<span id="cb52-2"><a href="data-types-en-structuren-in-r.html#cb52-2" tabindex="-1"></a><span class="fu">typeof</span>(q)</span></code></pre></div>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+<p>In het algemeen maakt dit verschil niet heel veel uit als je bewerkingen wilt uitvoeren. Om elementen van het type <em>dbl</em> naar het type <em>int</em> om te zetten, kan je het commando <em>as.integer</em> gebruiken. Om elementen van het type <em>int</em> naar het type <em>dbl</em> om te zetten, kan je het commando <em>as.numeric</em> gebruiken.</p>
+</div>
+<div id="character-data-type" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Character data type<a href="data-types-en-structuren-in-r.html#character-data-type" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Characters</strong> zijn elementen in de vorm van letters of stukken tekst. Deze elementen
+worden altijd omgeven met aanhalingstekens.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="data-types-en-structuren-in-r.html#cb54-1" tabindex="-1"></a>d <span class="ot">=</span> <span class="st">&quot;Goedemiddag&quot;</span></span>
+<span id="cb54-2"><a href="data-types-en-structuren-in-r.html#cb54-2" tabindex="-1"></a>f <span class="ot">=</span> <span class="st">&quot;allemaal&quot;</span></span>
+<span id="cb54-3"><a href="data-types-en-structuren-in-r.html#cb54-3" tabindex="-1"></a></span>
+<span id="cb54-4"><a href="data-types-en-structuren-in-r.html#cb54-4" tabindex="-1"></a><span class="fu">str</span>(d)</span></code></pre></div>
+<pre><code>##  chr &quot;Goedemiddag&quot;</code></pre>
+<p>Merk op dat met characters geen bewerkingen uitgevoerd kunnen worden.
+Dit zou resulteren in een Error:</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="data-types-en-structuren-in-r.html#cb56-1" tabindex="-1"></a>d <span class="sc">+</span> f</span></code></pre></div>
+<pre><code>## Error in d + f: non-numeric argument to binary operator</code></pre>
+<p>Het is wel mogelijk om verschillende characters te printen. Dit gebeurt
+via de <em>paste</em> functie waarin je de elementen specifieert die je naast
+elkaar wilt printen en waarin je in het argument <em>sep=</em> specifieert welke scheiding je
+wilt tussen de verschillende elementen.</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="data-types-en-structuren-in-r.html#cb58-1" tabindex="-1"></a><span class="fu">paste</span>(d, f, <span class="at">sep=</span><span class="st">&#39;,&#39;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;Goedemiddag,allemaal&quot;</code></pre>
+</div>
+<div id="vector-data-structuur" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Vector data structuur<a href="data-types-en-structuren-in-r.html#vector-data-structuur" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Elementen van de 2 vorige data types, numeriek en character, kunnen ook in een
+<strong>vector</strong> gestoken worden. Een vector is een 1-dimensionaal data structuur object dat enkel elementen bevat van hetzelfde data type. Je kan een vector aanmaken met behulp van ‘c()’ waarbij je tussen de haakjes alle elementen in je vector opsomt, gescheiden door een komma.</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="data-types-en-structuren-in-r.html#cb60-1" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">10</span>)</span>
+<span id="cb60-2"><a href="data-types-en-structuren-in-r.html#cb60-2" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;Aap&#39;</span>, <span class="st">&#39;Mug&#39;</span>, <span class="st">&#39;Olifant&#39;</span>)</span></code></pre></div>
+<p>Een vector die enkel numerieke elementen bevat, kan ook in bewerkingen gebruikt worden.
+De bewerkingen worden dan elementsgewijs uitgevoerd.</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="data-types-en-structuren-in-r.html#cb61-1" tabindex="-1"></a>g<span class="sc">*</span><span class="dv">4</span></span></code></pre></div>
+<pre><code>## [1]  4 16 28 40</code></pre>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="data-types-en-structuren-in-r.html#cb63-1" tabindex="-1"></a>g<span class="sc">^</span><span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1]   1  16  49 100</code></pre>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="data-types-en-structuren-in-r.html#cb65-1" tabindex="-1"></a>g<span class="dv">-4</span></span></code></pre></div>
+<pre><code>## [1] -3  0  3  6</code></pre>
+<p>Het is ook mogelijk om alle gehele getallen tussen 2 grenzen meteen te specifiëren.
+Dit kan met behulp van het dubbel punt-commando. Zo zal het commando <em>1:5</em> alle getallen
+van 1 tot en met 5 geven.</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="data-types-en-structuren-in-r.html#cb67-1" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span></span>
+<span id="cb67-2"><a href="data-types-en-structuren-in-r.html#cb67-2" tabindex="-1"></a>m</span></code></pre></div>
+<pre><code>## [1] 1 2 3 4 5</code></pre>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="data-types-en-structuren-in-r.html#cb69-1" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">67</span><span class="sc">:</span><span class="dv">98</span></span>
+<span id="cb69-2"><a href="data-types-en-structuren-in-r.html#cb69-2" tabindex="-1"></a>n</span></code></pre></div>
+<pre><code>##  [1] 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91
+## [26] 92 93 94 95 96 97 98</code></pre>
+<p>Merk op dat je bij uitzondering voor dit specifieke commando niet het <em>c()</em> commando nodig hebt.</p>
+<p>Daarnaast kan je ook een sequentie van getallen als vector creëren met daarin een minimum, maximum en stapgrootte (bijvoorbeeld: alle getallen tussen 0 en 20 met stapgrootte 2 of alle getallen tussen 4 en 50 met stapgrootte 6):</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="data-types-en-structuren-in-r.html#cb71-1" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">20</span>, <span class="at">by =</span> <span class="dv">2</span>)</span>
+<span id="cb71-2"><a href="data-types-en-structuren-in-r.html#cb71-2" tabindex="-1"></a>s</span></code></pre></div>
+<pre><code>##  [1]  0  2  4  6  8 10 12 14 16 18 20</code></pre>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="data-types-en-structuren-in-r.html#cb73-1" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">4</span>, <span class="dv">50</span>, <span class="dv">6</span>)</span></code></pre></div>
+<pre><code>## [1]  4 10 16 22 28 34 40 46</code></pre>
+<p>Om een aftellende vector te verkrijgen, start je met het grootste getal te specifiëren. Vervolgens specifieer je bij de stapgrootte nu een minteken voor het getal om aan te duiden dat je stappen wilt zetten van groot naar klein. Een voorbeeld:</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="data-types-en-structuren-in-r.html#cb75-1" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">40</span>, <span class="dv">7</span>, <span class="sc">-</span><span class="dv">4</span>)</span></code></pre></div>
+<pre><code>## [1] 40 36 32 28 24 20 16 12  8</code></pre>
+</div>
+<div id="matrix-data-structuur" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Matrix data structuur<a href="data-types-en-structuren-in-r.html#matrix-data-structuur" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Een <strong>matrix</strong> data structuur is een 2-dimensionaal object dat, net zoals vectoren, enkel elementen van eenzelfde data type bevat. Een matrix wordt gemaakt via de <em>matrix()</em> functie waarin gespecifieerd wordt welke waarden in de matrix moeten komen en hoeveel rijen en/of kolommen de matrix heeft.
+In het volgende voorbeeld wordt een matrix met elementen 1 tot en met 12 gemaakt waarbij de matrix 4 rijen heeft (en dus 3 kolommen).</p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="data-types-en-structuren-in-r.html#cb77-1" tabindex="-1"></a><span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">nrow =</span> <span class="dv">4</span>)</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    5    9
+## [2,]    2    6   10
+## [3,]    3    7   11
+## [4,]    4    8   12</code></pre>
+<p>Merk op dat de matrix de elementen kolomgewijs toewijst. Stel dat we dit rijgewijs willen doen (dus zodat 1 2 3 in de eerste rij staan in plaats van de eerste kolom), kan het extra argument <em>byrow = TRUE</em> gebruikt worden.</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="data-types-en-structuren-in-r.html#cb79-1" tabindex="-1"></a><span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">nrow =</span> <span class="dv">4</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    2    3
+## [2,]    4    5    6
+## [3,]    7    8    9
+## [4,]   10   11   12</code></pre>
+</div>
+<div id="list-data-structuur" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> List data structuur<a href="data-types-en-structuren-in-r.html#list-data-structuur" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Een <strong>list</strong> data structuur is een combinatie van andere soorten structuren.
+Zo kan het elementen van verschillende soorten data types bevatten, maar ook andere data structuren zoals een vector, matrix of verschillende andere lists.
+In het volgende voorbeeld beschouwen we een lijst met een numerieke waarde, vector en matrix als elementen.</p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="data-types-en-structuren-in-r.html#cb81-1" tabindex="-1"></a>mijnlijst <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">a =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">b =</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>, <span class="at">ncol=</span><span class="dv">3</span>), <span class="at">c =</span> <span class="dv">10</span>)</span>
+<span id="cb81-2"><a href="data-types-en-structuren-in-r.html#cb81-2" tabindex="-1"></a>mijnlijst</span></code></pre></div>
+<pre><code>## $a
+## [1] 1 2 3 4 5
+## 
+## $b
+##      [,1] [,2] [,3]
+## [1,]    1    4    7
+## [2,]    2    5    8
+## [3,]    3    6    9
+## 
+## $c
+## [1] 10</code></pre>
+<p>Individuele elementen van een lijst kunnen opgeroepen worden zoals een variabele in een dataframe met het <em>$</em> teken, ofwel via <span class="math inline">\([[k]]\)</span> waarbij het <span class="math inline">\(k\)</span>-de element van de list wordt opgeroepen.</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="data-types-en-structuren-in-r.html#cb83-1" tabindex="-1"></a>mijnlijst<span class="sc">$</span>b</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    4    7
+## [2,]    2    5    8
+## [3,]    3    6    9</code></pre>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="data-types-en-structuren-in-r.html#cb85-1" tabindex="-1"></a>mijnlijst[[<span class="dv">2</span>]]</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    4    7
+## [2,]    2    5    8
+## [3,]    3    6    9</code></pre>
+<p>Lijsten zijn uiterst handig bij het gebruik van functies waar meerdere elementen van verschillende types als uitvoer moeten gegeven worden. Het gebruik van lijsten is bovendien computationieel efficiënt.</p>
+</div>
+<div id="dataframe-data-structuur" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> Dataframe data structuur<a href="data-types-en-structuren-in-r.html#dataframe-data-structuur" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Een vierde en laatste belangrijke data structuur is de <strong>dataframe</strong>. Dit is een 2-dimensionele dataset die in de kolommen de variabelen weergeeft en in de rijen de observaties (individuen, dieren, …) zelf. In het volgende voorbeeld wordt een dataframe gemaakt met daarin de namen van 3 personen en hun leeftijd. Dit dataframe bevat dus een character en numeriek type variabele.</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="data-types-en-structuren-in-r.html#cb87-1" tabindex="-1"></a>dataframe1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span> (</span>
+<span id="cb87-2"><a href="data-types-en-structuren-in-r.html#cb87-2" tabindex="-1"></a>  <span class="at">Naam =</span> <span class="fu">c</span>(<span class="st">&quot;Jan&quot;</span>, <span class="st">&quot;Marie&quot;</span>, <span class="st">&quot;Koen&quot;</span>),</span>
+<span id="cb87-3"><a href="data-types-en-structuren-in-r.html#cb87-3" tabindex="-1"></a>  <span class="at">Leeftijd =</span> <span class="fu">c</span>(<span class="dv">22</span>, <span class="dv">15</span>, <span class="dv">19</span>)</span>
+<span id="cb87-4"><a href="data-types-en-structuren-in-r.html#cb87-4" tabindex="-1"></a>)</span>
+<span id="cb87-5"><a href="data-types-en-structuren-in-r.html#cb87-5" tabindex="-1"></a></span>
+<span id="cb87-6"><a href="data-types-en-structuren-in-r.html#cb87-6" tabindex="-1"></a>dataframe1</span></code></pre></div>
+<pre><code>##    Naam Leeftijd
+## 1   Jan       22
+## 2 Marie       15
+## 3  Koen       19</code></pre>
+<p>Op dataframes (en hoe je die zelf kan maken of inlezen) wordt later nog teruggekomen.</p>
+</div>
+<div id="factor-data-type" class="section level2 hasAnchor" number="3.7">
+<h2><span class="header-section-number">3.7</span> Factor data type<a href="data-types-en-structuren-in-r.html#factor-data-type" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Een <strong>factor</strong> element is een categorische variabele. Oorspronkelijk kan dit element een numeriek of character type geweest zijn, dat omgezet is naar een factor variabele.</p>
+<p>Er wordt nu eerst een vector gecreëerd met numerieke elementen en een vector met character elementen.</p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="data-types-en-structuren-in-r.html#cb89-1" tabindex="-1"></a>a <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">8</span>)</span>
+<span id="cb89-2"><a href="data-types-en-structuren-in-r.html#cb89-2" tabindex="-1"></a>b <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;Groen&quot;</span>, <span class="st">&quot;Blauw&quot;</span>, <span class="st">&quot;Rood&quot;</span>)</span></code></pre></div>
+<p>Vervolgens kunnen deze vectoren omgezet worden naar variabelen van het type factor:</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="data-types-en-structuren-in-r.html#cb90-1" tabindex="-1"></a>factor1 <span class="ot">&lt;-</span> <span class="fu">factor</span>(a)</span>
+<span id="cb90-2"><a href="data-types-en-structuren-in-r.html#cb90-2" tabindex="-1"></a>factor2 <span class="ot">&lt;-</span> <span class="fu">factor</span>(b)</span>
+<span id="cb90-3"><a href="data-types-en-structuren-in-r.html#cb90-3" tabindex="-1"></a></span>
+<span id="cb90-4"><a href="data-types-en-structuren-in-r.html#cb90-4" tabindex="-1"></a><span class="fu">str</span>(a)</span></code></pre></div>
+<pre><code>##  num [1:3] 1 4 8</code></pre>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="data-types-en-structuren-in-r.html#cb92-1" tabindex="-1"></a><span class="fu">str</span>(factor1)</span></code></pre></div>
+<pre><code>##  Factor w/ 3 levels &quot;1&quot;,&quot;4&quot;,&quot;8&quot;: 1 2 3</code></pre>
+<p>Merk ook op dat je geen bewerkingen meer kan doen met een numerieke variabele die als factor gebruikt wordt. Dit produceert opnieuw een Error:</p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="data-types-en-structuren-in-r.html#cb94-1" tabindex="-1"></a>a<span class="sc">*</span><span class="dv">4</span> <span class="co"># a is geen factor en dit gaat dus wel</span></span></code></pre></div>
+<pre><code>## [1]  4 16 32</code></pre>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="data-types-en-structuren-in-r.html#cb96-1" tabindex="-1"></a>factor1<span class="sc">*</span><span class="dv">4</span> <span class="co"># factor1 is van het data type factor en dit gaat dus niet</span></span></code></pre></div>
+<pre><code>## [1] NA NA NA</code></pre>
+</div>
+<div id="logical-data-type" class="section level2 hasAnchor" number="3.8">
+<h2><span class="header-section-number">3.8</span> Logical data type<a href="data-types-en-structuren-in-r.html#logical-data-type" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Een <strong>logical</strong> element kan enkel 2 mogelijke waarden aannemen: <em>True</em> of <em>False</em>. Dit data type wordt regelmatig gebruikt of verkregen bij het vergelijken van variabelen of het nagaan van logische uitdrukkingen.</p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="data-types-en-structuren-in-r.html#cb98-1" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">5</span> <span class="sc">&gt;</span> <span class="dv">3</span> <span class="co"># 5 is inderdaad groter dan 3, dus resulteert in &#39;TRUE&#39;</span></span>
+<span id="cb98-2"><a href="data-types-en-structuren-in-r.html#cb98-2" tabindex="-1"></a>a</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="data-types-en-structuren-in-r.html#cb100-1" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span><span class="dv">3</span> <span class="sc">==</span> <span class="dv">6</span></span>
+<span id="cb100-2"><a href="data-types-en-structuren-in-r.html#cb100-2" tabindex="-1"></a></span>
+<span id="cb100-3"><a href="data-types-en-structuren-in-r.html#cb100-3" tabindex="-1"></a>c <span class="ot">&lt;-</span> a <span class="sc">==</span> b <span class="co"># a en b waren beiden juist en hebben dus beide de waarde &#39;TRUE&#39;</span></span>
+<span id="cb100-4"><a href="data-types-en-structuren-in-r.html#cb100-4" tabindex="-1"></a>c</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<p>Merk op dat het testen of twee variabelen gelijk zijn gebeurd met een dubbel gelijkheidsteken ‘==’. Dit is om verwarring te vermijden met het creëren van variabelen, wat gebeurt met slechts een enkel gelijkheidsteken ‘=’.</p>
+<p>Er zijn nog verschillende andere vergelijkingen die gemaakt kunnen worden:</p>
+<ul>
+<li><p>&lt;, &gt;, <span class="math inline">\(\leq\)</span>, <span class="math inline">\(\geq\)</span> voor ongelijkheden</p></li>
+<li><p>== voor gelijkheden</p></li>
+<li><p>!= voor het testen of 2 elementen of vectoren niet gelijk zijn</p></li>
+<li><p>combinaties:</p>
+<ul>
+<li><p>&amp;: EN (testen of een uitspraak voldoet aan meer dan 1 voorwaarde)</p></li>
+<li><p>|: OF (testen of een uitspraak voldoet aan minstens 1 voorwaarde)</p></li>
+<li><p>!: NIET (testen of een voorwaarde niet voldoet aan een bepaalde voorwaarde)</p></li>
+</ul></li>
+</ul>
+<p>Het is belangrijk te vermelden dat bovenstaande operatoren elementsgewijs werken. Dit wil zeggen dat de operator, bij het vergelijken van data types met meerdere elementen, ieder element van een object zal vergelijken met een element op dezelfde positie van een ander element. Bijvoorbeeld, we willen weten welke elementen van twee vectoren aan elkaar gelijk zijn:</p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="data-types-en-structuren-in-r.html#cb102-1" tabindex="-1"></a>c1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)</span>
+<span id="cb102-2"><a href="data-types-en-structuren-in-r.html#cb102-2" tabindex="-1"></a>c2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>)</span>
+<span id="cb102-3"><a href="data-types-en-structuren-in-r.html#cb102-3" tabindex="-1"></a></span>
+<span id="cb102-4"><a href="data-types-en-structuren-in-r.html#cb102-4" tabindex="-1"></a>c1 <span class="sc">==</span> c2</span></code></pre></div>
+<pre><code>## [1] FALSE  TRUE FALSE FALSE FALSE</code></pre>
+<p>De output vertelt ons dat de elementen van de vectoren verschillen, behalve het tweede element. In het geval dat het doel is om gelijkheid van een vectoren (of andere data types) in hun geheel te testen, kunnen we ook gebruik maken van de functie <em>identical()</em>. Deze functie vertelt ons onmiddellijk of de vectoren gelijk zijn, maar geeft geen verdere info over welke elementen verschillen.</p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="data-types-en-structuren-in-r.html#cb104-1" tabindex="-1"></a><span class="fu">identical</span>(c1,c2)</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="commandos-in-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="een-afsluiter.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

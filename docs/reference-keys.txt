@@ -1,0 +1,17 @@
+wat-is-r
+r-software-downloaden
+rstudio-software-downloaden
+waarom-r
+het-r-dashboard
+het-r-script
+commandos-in-r
+data-types-en-structuren-in-r
+numeric-data-type
+character-data-type
+vector-data-structuur
+matrix-data-structuur
+list-data-structuur
+dataframe-data-structuur
+factor-data-type
+logical-data-type
+een-afsluiter
