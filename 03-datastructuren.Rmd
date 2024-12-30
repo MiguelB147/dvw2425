@@ -1,0 +1,245 @@
+# Data types en structuren in R
+
+Er zijn verschillende **data types** die gebruikt worden in R:
+
+* Numeric
+* Character
+* Factor
+* Logical
+
+Elementen van bovenstaande datatypes kunnen gecombineerd worden in **data structuren**:
+
+* Vector
+* Data Frame
+* Matrix
+* List
+
+## Numeric data type
+
+**Numerieke elementen** zijn elementen met een getalwaarde. Met numerieke elementen kunnen bewerkingen uitgevoerd worden die opnieuw resulteren in een nieuw numeriek element.
+
+Om te controleren welk data type een bepaalde variabele heeft, kan de *str* functie
+gebruikt worden.
+
+```{r}
+a <- 5
+b <- 6
+str(a)
+str(b)
+
+a + b 
+str(a + b)
+```
+
+Binnen de klasse van numerieke elementen is er echter nog een opsplitsing van twee data types. Zo maakt R een onderscheid tussen gehele getallen en in het algemeen reële getallen die dus ook decimalen kunnen bevatten. R beschouwt getallen standaard als reëele getallen. Het element heeft dan data type *dbl* of *double*, wat staat voor *double precision*, duidend op het feit dat het ook decimale getallen kan aannemen als waarde. Gehele getallen, hebben het data type *int* (van het Engels: integer). Zij worden gespecifieerd door middel van de letter *L* achter het getal te plaatsen. Om het exacte data type na te gaan, kan de functie *typeof()* gebruikt worden. Een voorbeeld van de twee verschillende data types:
+
+```{r}
+c <- 1000L #Dit beschouwt R als een geheel getal.
+typeof(c)
+q <- 1000 #Dit beschouwt R als een reëel getal.
+typeof(q)
+```
+In het algemeen maakt dit verschil niet heel veel uit als je bewerkingen wilt uitvoeren. Om elementen van het type *dbl* naar het type *int* om te zetten, kan je het commando *as.integer* gebruiken. Om elementen van het type *int* naar het type *dbl* om te zetten, kan je het commando *as.numeric* gebruiken.
+
+
+## Character data type
+
+**Characters** zijn elementen in de vorm van letters of stukken tekst. Deze elementen
+worden altijd omgeven met aanhalingstekens.
+
+```{r}
+d = "Goedemiddag"
+f = "allemaal"
+
+str(d)
+```
+
+Merk op dat met characters geen bewerkingen uitgevoerd kunnen worden. 
+Dit zou resulteren in een Error:
+
+```{r, error = TRUE}
+d + f
+```
+
+Het is wel mogelijk om verschillende characters te printen. Dit gebeurt
+via de *paste* functie waarin je de elementen specifieert die je naast 
+elkaar wilt printen en waarin je in het argument *sep=* specifieert welke scheiding je
+wilt tussen de verschillende elementen.
+
+```{r}
+paste(d, f, sep=',')
+```
+
+## Vector data structuur
+
+Elementen van de 2 vorige data types, numeriek en character, kunnen ook in een 
+**vector** gestoken worden. Een vector is een 1-dimensionaal data structuur object dat enkel elementen bevat van hetzelfde data type. Je kan een vector aanmaken met behulp van 'c()' waarbij je tussen de haakjes alle elementen in je vector opsomt, gescheiden door een komma. 
+
+```{r}
+g <- c(1, 4, 7, 10)
+h <- c('Aap', 'Mug', 'Olifant')
+```
+
+Een vector die enkel numerieke elementen bevat, kan ook in bewerkingen gebruikt worden.
+De bewerkingen worden dan elementsgewijs uitgevoerd.
+
+```{r}
+g*4
+g^2
+g-4
+```
+
+Het is ook mogelijk om alle gehele getallen tussen 2 grenzen meteen te specifiëren.
+Dit kan met behulp van het dubbel punt-commando. Zo zal het commando *1:5* alle getallen
+van 1 tot en met 5 geven.
+
+```{r}
+m <- 1:5
+m
+n <- 67:98
+n
+```
+
+Merk op dat je bij uitzondering voor dit specifieke commando niet het *c()* commando nodig hebt.
+
+Daarnaast kan je ook een sequentie van getallen als vector creëren met daarin een minimum, maximum en stapgrootte (bijvoorbeeld: alle getallen tussen 0 en 20 met stapgrootte 2 of alle getallen tussen 4 en 50 met stapgrootte 6):
+
+```{r}
+s <- seq(from = 0, to = 20, by = 2)
+s
+seq(4, 50, 6)
+```
+Om een aftellende vector te verkrijgen, start je met het grootste getal te specifiëren. Vervolgens specifieer je bij de stapgrootte nu een minteken voor het getal om aan te duiden dat je stappen wilt zetten van groot naar klein. Een voorbeeld:
+
+```{r}
+seq(40, 7, -4)
+```
+
+## Matrix data structuur
+
+Een **matrix** data structuur is een 2-dimensionaal object dat, net zoals vectoren, enkel elementen van eenzelfde data type bevat. Een matrix wordt gemaakt via de *matrix()* functie waarin gespecifieerd wordt welke waarden in de matrix moeten komen en hoeveel rijen en/of kolommen de matrix heeft.
+In het volgende voorbeeld wordt een matrix met elementen 1 tot en met 12 gemaakt waarbij de matrix 4 rijen heeft (en dus 3 kolommen).
+
+```{r}
+matrix(1:12, nrow = 4)
+```
+
+Merk op dat de matrix de elementen kolomgewijs toewijst. Stel dat we dit rijgewijs willen doen (dus zodat 1 2 3 in de eerste rij staan in plaats van de eerste kolom), kan het extra argument *byrow = TRUE* gebruikt worden.
+
+```{r}
+matrix(1:12, nrow = 4, byrow = TRUE)
+```
+
+
+## List data structuur
+
+Een **list** data structuur is een combinatie van andere soorten structuren.
+Zo kan het elementen van verschillende soorten data types bevatten, maar ook andere data structuren zoals een vector, matrix of verschillende andere lists.
+In het volgende voorbeeld beschouwen we een lijst met een numerieke waarde, vector en matrix als elementen.
+
+```{r}
+mijnlijst <- list(a = 1:5, b = matrix(1:9, ncol=3), c = 10)
+mijnlijst
+```
+
+Individuele elementen van een lijst kunnen opgeroepen worden zoals een variabele in een dataframe met het *\$* teken, ofwel via $[[k]]$ waarbij het $k$-de element van de list wordt opgeroepen.
+
+```{r}
+mijnlijst$b
+mijnlijst[[2]]
+```
+
+Lijsten zijn uiterst handig bij het gebruik van functies waar meerdere elementen van verschillende types als uitvoer moeten gegeven worden. Het gebruik van lijsten is bovendien computationieel efficiënt. 
+
+
+## Dataframe data structuur
+
+Een vierde en laatste belangrijke data structuur is de **dataframe**. Dit is een 2-dimensionele dataset die in de kolommen de variabelen weergeeft en in de rijen de observaties (individuen, dieren, ...) zelf. In het volgende voorbeeld wordt een dataframe gemaakt met daarin de namen van 3 personen en hun leeftijd. Dit dataframe bevat dus een character en numeriek type variabele.
+
+```{r}
+dataframe1 <- data.frame (
+  Naam = c("Jan", "Marie", "Koen"),
+  Leeftijd = c(22, 15, 19)
+)
+
+dataframe1
+```
+
+Op dataframes (en hoe je die zelf kan maken of inlezen) wordt later nog teruggekomen.
+
+## Factor data type
+
+
+Een **factor** element is een categorische variabele. Oorspronkelijk kan dit element een numeriek of character type geweest zijn, dat omgezet is naar een factor variabele.
+
+Er wordt nu eerst een vector gecreëerd met numerieke elementen en een vector met character elementen.
+
+```{r}
+a = c(1, 4, 8)
+b = c("Groen", "Blauw", "Rood")
+```
+
+Vervolgens kunnen deze vectoren omgezet worden naar variabelen van het type factor:
+
+```{r}
+factor1 <- factor(a)
+factor2 <- factor(b)
+
+str(a)
+str(factor1)
+```
+
+Merk ook op dat je geen bewerkingen meer kan doen met een numerieke variabele die als factor gebruikt wordt. Dit produceert opnieuw een Error:
+
+```{r, error = TRUE}
+a*4 # a is geen factor en dit gaat dus wel
+factor1*4 # factor1 is van het data type factor en dit gaat dus niet
+```
+
+## Logical data type
+
+Een **logical** element kan enkel 2 mogelijke waarden aannemen: *True* of *False*. Dit data type wordt regelmatig gebruikt of verkregen bij het vergelijken van variabelen of het nagaan van logische uitdrukkingen.
+
+```{r}
+a <- 5 > 3 # 5 is inderdaad groter dan 3, dus resulteert in 'TRUE'
+a
+
+b <- 2*3 == 6
+
+c <- a == b # a en b waren beiden juist en hebben dus beide de waarde 'TRUE'
+c
+```
+
+Merk op dat het testen of twee variabelen gelijk zijn gebeurd met een dubbel gelijkheidsteken '=='. Dit is om verwarring te vermijden met het creëren van variabelen, wat gebeurt met slechts een enkel gelijkheidsteken '='.
+
+Er zijn nog verschillende andere vergelijkingen die gemaakt kunnen worden:
+
+* <, >, $\leq$, $\geq$ voor ongelijkheden
+
+* == voor gelijkheden
+
+* != voor het testen of 2 elementen of vectoren niet gelijk zijn
+
+* combinaties:
+
+  + &: EN (testen of een uitspraak voldoet aan meer dan 1 voorwaarde)
+  
+  + |: OF (testen of een uitspraak voldoet aan minstens 1 voorwaarde)
+  
+  + !: NIET (testen of een voorwaarde niet voldoet aan een bepaalde voorwaarde)
+
+Het is belangrijk te vermelden dat bovenstaande operatoren elementsgewijs werken. Dit wil zeggen dat de operator, bij het vergelijken van data types met meerdere elementen, ieder element van een object zal vergelijken met een element op dezelfde positie van een ander element. Bijvoorbeeld, we willen weten welke elementen van twee vectoren aan elkaar gelijk zijn:
+
+```{r}
+c1 <- c(1,2,3,4,5)
+c2 <- c(2,2,8,9,10)
+
+c1 == c2
+```
+
+De output vertelt ons dat de elementen van de vectoren verschillen, behalve het tweede element. In het geval dat het doel is om gelijkheid van een vectoren (of andere data types) in hun geheel te testen, kunnen we ook gebruik maken van de functie *identical()*. Deze functie vertelt ons onmiddellijk of de vectoren gelijk zijn, maar geeft geen verdere info over welke elementen verschillen.
+
+```{r}
+identical(c1,c2)
+```
+

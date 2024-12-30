@@ -1,0 +1,66 @@
+# Wat is R?
+
+In deze cursus zal het gratis softwarepakket *R* gebruikt worden. *R* is geschikt voor het manipuleren, statistisch analyseren en visualiseren van data. Daarnaast zullen we gebruikmaken van RStudio, een geïntegreerde ontwikkelomgeving voor R.
+
+
+## R software downloaden
+
+De nieuwste versie van *R* (versie 4.4.2) kan gedownload worden via volgende link:
+https://cran.r-project.org/bin/windows/base/. 
+
+## RStudio software downloaden
+Hierna kan **RStudio** geïnstalleerd worden via volgende link:
+https://posit.co/download/rstudio-desktop/. 
+
+RStudio wordt gezien als een gebruiksvriendelijkere versie van de standaard R
+software met een modernere interface. De programmeertaal is echter volledig identiek in
+beide programma's. 
+
+## Waarom R?
+
+R is een programmeertaal die de laatste jaren heel veel populariteit heeft gewonnen. Dit komt enerzijds door de toegankelijkheid en gebruiksvriendelijkheid naar beginners toe van de programmeertaal zelf, maar anderzijds ook door de vele mogelijkheden die de taal biedt. Zo is het geschikt voor het bewerken, het visualiseren en het analyseren van de data. Op onderstaande figuur is zichtbaar hoe populair de verschillende software talen waren in 2018 voor een bepaalde groep onderzoekers. 
+
+```{r, echo = FALSE}
+knitr::include_graphics("C:/Users/lucp13059/Documents/Overig/Intro R/DistributionOfUse.png")
+```
+
+
+
+## Het R dashboard
+
+Zodra RStudio geopend wordt, verschijnt een 3-delig venster. In de *Environment* (venster rechtsboven) kan je vinden welke variabelen en datasets in de huidige R sessie geladen zijn. Dit is momenteel leeg, maar zal in de loop van deze cursus aangevuld worden. In het paneel rechtsonder staat automatisch het venster *Plots* open waarin figuren verschijnen wanneer dit gevraagd wordt. Dit zijn de twee hulpvensters. In het venster aan de linkerkant staat de **Console** open waarin alle commando's en output verschijnen die recent zijn uitgevoerd.
+
+In deze Console kan je zelf commando's typen achter de '>'. Bijvoorbeeld, als je de som 3 + 4 willen berekenen, zet je deze in de Console en druk je op ENTER.
+
+```{r}
+3 + 4
+```
+
+De uitkomst van deze som komt ook in de Console terecht, onder de ingevoegde bewerking. Ook eventuele foutmeldingen die je later kan tegenkomen, zullen in deze Console verschijnen.
+
+## Het R script
+
+Om te voorkomen dat je commando's steeds opnieuw moet typen in de console, of 
+wanneer je de commando's wilt opslaan, kan een **script** aangemaakt worden.
+
+Om dit te doen, ga je naar File > New File > R Script en dan verschijnt er een vierde
+venster linksboven in de sessie, boven de Console. Dit venster heeft voorlopig als naam 'Untitled 1'.
+
+In dit script kan je nu verschillende lijnen code typen die uitgevoerd zullen worden. Bijvoorbeeld, typ onder elkaar de commando's 1 + 1 en 3 + 4. Klik dan op de knop 'Run' (dit is het icoontje rechtsboven in je script met het groene pijltje). Een sneltoets om code te runnen is 'CTRL + ENTER' (in geval van een Windows toestel) of 'Cmd + ENTER' (in geval van Mac toestellen). Deze shortcut (en een overzicht van andere shortcuts) kan je terugvinden in (bijv.) Code > Run Selected Line(s). 
+
+```{r}
+1 + 1
+3 + 4
+```
+
+Om een bestaand R script te openen, klik je op File > Open File en vervolgens navigeer je naar de map waarin het bestand staat en kies je het juise bestand (met extensie .R) dat je wilt openen.
+
+Om het script op te slaan, ga je naar File > Save As en vul je een bestandsnaam naar keuze in. Let wel op dat je als extensie .R kiest.
+
+Het is ook mogelijk om **commentaar** te typen bij stukjes code. Dit doe je door eerst een **#** en daarachter code te typen. Deze lijn wordt dan niet uitgevoerd bij het runnen van de code. Dit kan handig zijn om extra uitleg te schrijven achter bepaalde functies (bijvoorbeeld met betrekking tot de betekenis van diens argumenten) of bij een deel van de code. In het volgende stukje code zal het eerste deel wel uitgevoerd worden, maar het tweede deel niet.
+
+```{r}
+3 + 4
+# 5 + 6, dit stukje wordt niet uitgevoerd door de '#'
+```
+

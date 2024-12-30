@@ -28,24 +28,17 @@ library(dplyr)
 ```
 
 
-\newpage
-```{=latex}
-\setcounter{tocdepth}{4}
-\tableofcontents
-```
-\newpage
-
 # Wat is R?
 
 In deze cursus zal het gratis softwarepakket *R* gebruikt worden. *R* is geschikt voor het manipuleren, statistisch analyseren en visualiseren van data. Daarnaast zullen we gebruikmaken van RStudio, een geïntegreerde ontwikkelomgeving voor R.
 
 
-# R software downloaden
+## R software downloaden
 
 De nieuwste versie van *R* (versie 4.4.2) kan gedownload worden via volgende link:
 https://cran.r-project.org/bin/windows/base/. 
 
-# RStudio software downloaden
+## RStudio software downloaden
 Hierna kan **RStudio** geïnstalleerd worden via volgende link:
 https://posit.co/download/rstudio-desktop/. 
 
@@ -53,7 +46,7 @@ RStudio wordt gezien als een gebruiksvriendelijkere versie van de standaard R
 software met een modernere interface. De programmeertaal is echter volledig identiek in
 beide programma's. 
 
-# Waarom R?
+## Waarom R?
 
 R is een programmeertaal die de laatste jaren heel veel populariteit heeft gewonnen. Dit komt enerzijds door de toegankelijkheid en gebruiksvriendelijkheid naar beginners toe van de programmeertaal zelf, maar anderzijds ook door de vele mogelijkheden die de taal biedt. Zo is het geschikt voor het bewerken, het visualiseren en het analyseren van de data. Op onderstaande figuur is zichtbaar hoe populair de verschillende software talen waren in 2018 voor een bepaalde groep onderzoekers. 
 
@@ -63,7 +56,7 @@ knitr::include_graphics("C:/Users/lucp13059/Documents/Overig/Intro R/Distributio
 
 
 
-# Het R dashboard
+## Het R dashboard
 
 Zodra RStudio geopend wordt, verschijnt een 3-delig venster. In de *Environment* (venster rechtsboven) kan je vinden welke variabelen en datasets in de huidige R sessie geladen zijn. Dit is momenteel leeg, maar zal in de loop van deze cursus aangevuld worden. In het paneel rechtsonder staat automatisch het venster *Plots* open waarin figuren verschijnen wanneer dit gevraagd wordt. Dit zijn de twee hulpvensters. In het venster aan de linkerkant staat de **Console** open waarin alle commando's en output verschijnen die recent zijn uitgevoerd.
 
@@ -75,7 +68,7 @@ In deze Console kan je zelf commando's typen achter de '>'. Bijvoorbeeld, als je
 
 De uitkomst van deze som komt ook in de Console terecht, onder de ingevoegde bewerking. Ook eventuele foutmeldingen die je later kan tegenkomen, zullen in deze Console verschijnen.
 
-# Het R script
+## Het R script
 
 Om te voorkomen dat je commando's steeds opnieuw moet typen in de console, of 
 wanneer je de commando's wilt opslaan, kan een **script** aangemaakt worden.
@@ -682,7 +675,7 @@ data_new$meters <- data_new$`Lengte in cm`/100
 
 Nu de data ingelezen is kan het in R makkelijk samengevat en gevisualiseerd worden. Data-analyse en visualisatie kan opgesplitst worden voor numerieke en character of categorische variabelen.
 
-### Voor numerieke variabelen.
+## Voor numerieke variabelen.
 
 Voor het illustreren van enkele simpele analyse en visualisatie technieken voor numerieke variabelen, zal de piraten data beschouwd worden en meer bepaald de variablen voor hoogte: *height*.
 In de volgende code wordt het gemiddelde van de hoogtes berekend met de functie *mean*. Even snel kunnen ook het minimum, maximum en de mediaan berekend worden met de funties *min*, *max* en *median* .
@@ -714,7 +707,7 @@ Zelfs in deze basisfuncties van R zoals *hist* en *boxplot*, zijn er nog steeds 
 hist(pirates$height, main = 'Titel histogram', xlab = 'Naam x-as', ylab = 'Naam y-as', col = 'red')
 ```
 
-### Voor niet-numerieke variabelen.
+## Voor niet-numerieke variabelen.
 
 Voor character of factor variabelen is het uiteraard niet zinvol om maten zoals het minimum, de mediaan, ... te berekenen. Voor dit soort variabelen worden eerder tabellen gemaakt die weergeven hoe vaak iedere categorie of unieke waarde van een character variabele voorkomen. Om dit te illustreren, zal de variabele uit de *pirates* dataset gebruikt worden die de favoriete piraat aanduidt: *favorite.pirate*. Met behulp van de functie *table* wordt een tabel gemaakt die voor iedere piraat weergeeft hoevaak deze als favoriet is gekozen in totaal.
 
@@ -762,7 +755,7 @@ abline(model, data = pirates)
 
 ```
 
-Ten slotte is het ook mogelijk om te werken met verdelingen en kansrekenen in R. Een overzicht van de belangrijkste functies en hun toepassingen kan gevonden worden via de [volgende link]### Extra kansrekenen: (https://colab.research.google.com/drive/1iImgchUIuURmCDYlvsj7_j202fo_JaSJ#scrollTo=cB9jkCZyD0T7):
+Ten slotte is het ook mogelijk om te werken met verdelingen en kansrekenen in R. Een overzicht van de belangrijkste functies en hun toepassingen kan gevonden worden via de [volgende link]### Extra kansrekenen: (https://colab.research.google.com/drive/1iImgchUIuURmCDYlvsj7_j202fo_JaSJ#scrollTo=cB9jkCZyD0T7)
 
 
 # Een afsluiter

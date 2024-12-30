@@ -1,0 +1,28 @@
+---
+title: "\LIntroductie programmeren in R"
+author: "| Wouter Smeets - wouter.smeets@uhasselt.be\n| Miguel Beynaerts - miguel.beynaerts@uhasselt.be\n| Steven Abrams - steven.abrams@uhasselt.be\n"
+date: "16 November 2024"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+github-repo: MiguelB147/dvw2425
+subtitle: Dag van de wetenschap & wiskunde - KULAK Kortrijk
+geometry: margin=3cm
+header-includes:
+- \usepackage{titling}
+- \pretitle{\begin{center}\LARGE\includegraphics[width=4cm]{DSI_Logo.jpg}\\[\bigskipamount]}
+- \posttitle{\end{center}}
+- \clearpage
+- \newpage
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = TRUE, 
+                      message = FALSE,	
+                      warning = FALSE,
+                      eval = TRUE,
+                      tidy = FALSE)
+  
+library(ggplot2)
+library(dplyr)
+```

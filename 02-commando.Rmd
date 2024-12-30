@@ -1,0 +1,80 @@
+# Commando's in R
+
+R kan alles wat een zakrekenmachine ook kan. Enkele voorbeelden worden hieronder gegeven:
+
+```{r}
+2+3 # Optellen door '+'
+2*3 # Vermenigvuldigen door '*'
+2^3 # Machten berekenen door '^'
+9-3 # Aftrekken door '-'
+9/3 # Delen door '/'
+```
+De vierkantswortel van $x$ kan via het *sqrt(x)* commando verkregen worden:
+
+```{r}
+sqrt(16)
+```
+
+Ook de logaritmische en exponentiële functies kunnen gebruikt worden. De 
+exponentiële functie $e^x$ werkt via het commando *exp(x)* en de logaritmische
+functie $log_a(x)$ via *log(x, a)*. 
+
+De exponentiële functie in 4 geëvalueerd en de logaritme van 3 met grondtal 7 worden
+dus bekomen door:
+
+```{r}
+exp(4)
+log(3, 7)
+```
+
+*Let op*: de functie $\log(x)$ evalueert standaard (i.e. als je geen *a* specifieert) de natuurlijke logaritme met grondtal $e$ in $x$, m.a.w. is dit eigenlijk de functie $\ln(x)$. De volgende twee commando's hebben daarom dezelfde oplossing.
+
+```{r}
+log(4)
+log(4, exp(1))
+```
+
+Verder kan je de uitkomst van bewerkingen ook opslaan in nieuwe variabelen. Dit
+doe je door '=' of '<-' te gebruiken. Als je bijvoorbeeld de uitkomst van een optelling 
+wilt toewijzen aan een nieuwe variabele genaamd *nieuw*, kan dat als volgt:
+
+```{r}
+nieuw <- 3 + 4
+```
+
+Merk op dat er geen output verschijnt. In het *Environment* venster rechtsboven verschijnt de nieuwe variabele wel met zijn waarde. Om via de *Console* te kijken wat de waarde van deze nieuwe variabele is, kan je hem gewoon in de Console ingeven:
+
+```{r}
+nieuw
+```
+
+Nu zie je dat deze variabele de waarde 7 heeft. Stel dat je de variabele een andere waarde wil geven,
+dan kan je deze gewoon overschrijven met een nieuwe bewerking:
+
+```{r}
+nieuw <- 5*2
+nieuw
+```
+
+Nu heeft de variabele een nieuwe waarde gelijk aan 10 en is hij de oude vergeten. Je kan een variabele elke naam geven die je wilt. 
+
+**LET OP:** R is hoofdlettergevoelig. Houd hiermee rekening in het kiezen van namen en het uitvoeren
+van commando's; het is aangewezen om via een consistente manier de naamgeving te kiezen om problemen te vermijden. 
+Let verder ook op bij het kiezen van namen die gelijk zijn aan bestaande R functies. Zo wordt de letter *t* ook gebruikt voor de zogeheten student $t$-verdeling, is *mean* de naam van een functie in R die het gemiddelde berekent en zijn woorden zoals *TRUE* of *FALSE* de ingebouwde namen voor logische operatoren in R.
+
+Verder is het ook mogelijk om je aangemaakte variabelen in nieuwe bewerkingen te gebruiken:
+
+```{r}
+sqrt(nieuw)
+nieuw*2
+(nieuw+nieuw)/4
+```
+
+Als je meer info wilt krijgen over een bepaald commando, dan kan je er een '?' voor zetten
+in de Console. Vervolgens wordt er rechtsonder in het venster 'Help' een hulpvenster geopend met meer info. Bijvoorbeeld, voor extra informatie over het gebruik van het *log*-commando, kan je het volgende in de Console typen:
+
+```{r, eval = FALSE}
+?log
+```
+
+Om te laten zien waarom het maken van een script handig kan zijn, kan je R eens even afsluiten (vergeet niet op opslaan te klikken als je dit nog niet hebt gedaan!). Als je R nu opnieuw opent, zie je dat het script er nog steeds is, maar dat de Console terug leeg is. Als je je werk dus wilt bewaren, werk je best in een script i.p.v. de Console.

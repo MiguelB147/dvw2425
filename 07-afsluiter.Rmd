@@ -1,0 +1,3 @@
+# Een afsluiter
+
+Dit document geeft een korte inleiding tot de programmeertaal van R. Enkele van de vele mogelijke basis functies werden geïllustreerd, maar hier stopt het zeker niet. Er zijn bijvoorbeeld nog meer dan 20 000 R packages die je kan installeren, elk met hun eigen handige functies voor specifieke doelen. Twee handige packages die vaak gebruikt worden en zeker de moeite zijn om eens verder te bekijken, zijn de volgende. Om bijvoorbeeld mooiere grafieken te maken, kan je de functies in het *ggplot2*-package gebruiken. Om makkelijk data sets te bewerken of te filteren, worden de functies in het *dplyr*-package vaak gebruikt. 

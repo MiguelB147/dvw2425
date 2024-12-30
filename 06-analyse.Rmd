@@ -1,0 +1,29 @@
+# Statistische analyses in R
+
+R is tot nog veel meer in staat dan enkel histogrammen of barplots maken. In deze sectie worden enkele eenvoudige univariate analyses in R besproken. Hierin wordt vooral gefocust op de link met hypothese testen, iets wat regelmatig terugkomt in zowel middelbaar als hoger onderwijs.
+
+Ten eerste kan het zijn dat je vermoed dat de leeftijd voor vrouwelijke piraten gemiddeld gezien verschilt van die van mannelijke piraten. Als je aanneemt dat de observaties allemaal onafhankelijk zijn van elkaar, dan is een t-test een goede optie om deze hypothese te testen. Deze test wordt uitgevoerd door het commando *t.test*. Deze functie heeft enerzijds de twee groepen nodig die je vergelijkt (dus de leeftijden van alle vrouwen en de leeftijden van alle mannen). Verder kan je ook nog extra specifiëren of je één- of tweezijdig wilt testen via het argument *alternative = c("two.sided","less", "greater")* waarbij je dus één van deze 3 kiest. *two.sided* wordt automatisch gebruikt als je dit argument niet specifieert. Ook een gepaarde t-test kan gebruikt worden. Dit gebeurt door middel van het argument *paired = TRUE*. Dit argument staat by default op *paired = FALSE*, waardoor het dus geen gepaarde t-test uitvoert. Voor meer specificaties van deze functie, zie de help-functie *?t.test*. De code voor het tweezijdig testen van het verschil in leeftijd tussen mannen en vrouwen met onafhankelijke waardes wordt dan:
+
+```{r}
+t.test(pirates$age[pirates$sex == 'male'], pirates$age[pirates$sex == 'female'])
+```
+In de output van deze functie vind je terug wat de nulhypothese is, wat de gemiddeldes zijn voor beide leeftijden die je vergelijkt en wat het 95% betrouwbaarheidsinterval is voor het gemiddelde verschil tussen beide groepen. Tot slot staan ook de waarde van de test statistiek *t*, de vrijheidsgraden en de p-waarde gegeven. Aangezien de p-waarde kleiner is dan 0.05, zou je kunnen besluiten dat er wel degelijk een verschil is tussen de gemiddelde leeftijd van vrouwen en mannen op een 5% significantieniveau.
+
+Om associaties tussen variabelen te bestuderen, kunnen regressie-analyses gedaan worden. Als je het effect van leeftijd op de lengte van de baard wilt onderzoeken, kan een lineair regressie model gebruikt worden (in de aanname dat alle voorwaarden voor een lineaire regressie voldaan zijn). De functie hiervoor is *lm(y~x)*, waarbij *lm* de afkorting is van *linear model* en waarbij *x* de variabele is waarvan je het effect op de variabele *y* wilt berekenen. Voor dit voorbeeld wil je het effect van de leeftijd op de lengte van de baard onderzoeken en wordt het model dus:
+
+```{r}
+model <- lm(beard.length ~ age, data = pirates)
+summary(model)
+```
+
+De output voor dit model zegt dat er een significant effect is op een 5% significantieniveau en dat, met dalende leeftijd, de lengte van de baard gemiddeld gezien stijgt.
+
+Deze regressielijn kan ook grafisch voorgesteld worden op een scatterplot. De functie *plot* maakt een scatterplot van de twee variabelen ten opzichte van elkaar. De functie *abline* maakt een rechte met de gegevens uit het lineair model. Dit wordt de regressierechte.
+
+```{r}
+plot(pirates$beard.length, pirates$age)
+abline(model, data = pirates)
+
+```
+
+Ten slotte is het ook mogelijk om te werken met verdelingen en kansrekenen in R. Een overzicht van de belangrijkste functies en hun toepassingen kan gevonden worden via de [volgende link]### Extra kansrekenen: (https://colab.research.google.com/drive/1iImgchUIuURmCDYlvsj7_j202fo_JaSJ#scrollTo=cB9jkCZyD0T7)
