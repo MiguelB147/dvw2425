@@ -1,5 +1,6 @@
 # dvw2425
 Dag van de wiskunde 2024-2025
+https://miguelb147.github.io/dvw2425/
 
 # License
 Shield: [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
