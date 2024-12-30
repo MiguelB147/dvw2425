@@ -12,7 +12,6 @@ output: bookdown::gitbook
 documentclass: book
 github-repo: MiguelB147/dvw2425
 subtitle: Dag van de wetenschap & wiskunde - KULAK Kortrijk
-geometry: margin=3cm
 ---
 
 ```{r init, include=FALSE}
@@ -28,4 +27,6 @@ knitr::opts_chunk$set(echo = TRUE,
 library(ggplot2)
 library(dplyr)
 ```
+
+# Hallo
 
