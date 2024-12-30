@@ -1,5 +1,5 @@
 ---
-title: "\LIntroductie programmeren in R"
+title: "\L Introductie programmeren in R"
 author: "| Wouter Smeets - wouter.smeets@uhasselt.be\n| Miguel Beynaerts - miguel.beynaerts@uhasselt.be\n| Steven Abrams - steven.abrams@uhasselt.be\n"
 date: "16 November 2024"
 site: bookdown::bookdown_site

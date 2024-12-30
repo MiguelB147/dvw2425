@@ -20,10 +20,6 @@ beide programma's.
 
 R is een programmeertaal die de laatste jaren heel veel populariteit heeft gewonnen. Dit komt enerzijds door de toegankelijkheid en gebruiksvriendelijkheid naar beginners toe van de programmeertaal zelf, maar anderzijds ook door de vele mogelijkheden die de taal biedt. Zo is het geschikt voor het bewerken, het visualiseren en het analyseren van de data. Op onderstaande figuur is zichtbaar hoe populair de verschillende software talen waren in 2018 voor een bepaalde groep onderzoekers. 
 
-# ```{r, echo = FALSE}
-# knitr::include_graphics("C:/Users/lucp13059/Documents/Overig/Intro R/DistributionOfUse.png")
-# ```
-
 
 
 ## Het R dashboard

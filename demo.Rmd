@@ -1,5 +1,5 @@
 ---
-title: "\LIntroductie programmeren in R"
+title: "\L Introductie programmeren in R"
 author: "| Wouter Smeets - wouter.smeets@uhasselt.be\n| Miguel Beynaerts - miguel.beynaerts@uhasselt.be\n| Steven Abrams - steven.abrams@uhasselt.be\n"
 date: "16 November 2024"
 site: bookdown::bookdown_site
@@ -25,7 +25,6 @@ knitr::opts_chunk$set(echo = TRUE,
   
 library(ggplot2)
 library(dplyr)
-library(yarrr)
 ```
 
 <!--chapter:end:index.Rmd-->
@@ -51,10 +50,6 @@ beide programma's.
 ## Waarom R?
 
 R is een programmeertaal die de laatste jaren heel veel populariteit heeft gewonnen. Dit komt enerzijds door de toegankelijkheid en gebruiksvriendelijkheid naar beginners toe van de programmeertaal zelf, maar anderzijds ook door de vele mogelijkheden die de taal biedt. Zo is het geschikt voor het bewerken, het visualiseren en het analyseren van de data. Op onderstaande figuur is zichtbaar hoe populair de verschillende software talen waren in 2018 voor een bepaalde groep onderzoekers. 
-
-# ```{r, echo = FALSE}
-# knitr::include_graphics("C:/Users/lucp13059/Documents/Overig/Intro R/DistributionOfUse.png")
-# ```
 
 
 
@@ -430,350 +425,11 @@ identical(c1,c2)
 
 <!--chapter:end:03-datastructuren.Rmd-->
 
-# Datasets in R
-
-In dit hoofdstuk wordt uitgelegd hoe je een dataset kan inlezen uit, bijvoorbeeld, een Excel bestand. Verder wordt er ook uitgelegd hoe je zelf een dataset kan maken in R.
-
-## Dataset inlezen uit R package
-
-De functies en data die tot nu gebruikt werden zitten standaard in R software omdat ze gemaakt zijn door de originele auteurs. Het is echter mogelijk om ook datasets en code van andere personen te gebruiken. Hiervoor moet je een *package* installeren. Het gebruik van packages in R kan je zien als het gebruik van een lamp: net zoals je éénmalig een lamp installeert, zal je éénmalig het package installeren. Dit doe je met behulp van de functie *install.packages("naam")*. Op de plek waar nu *naam* staat, zet je de naam van het package dat je wilt installeren.
-Verder, om een lamp te kunnen gebruiken, moet je hem telkens aanzetten. Dit werkt ook zo met packages: iedere R sessie waarbij je een bepaald package wilt gebruiken, moet je deze eerst in de sessie laden. Dit doe je met behulp van de functie *library('naam')*. 
-Als je de R sessie afsluit en een nieuwe R sessie opent zal je dus het package niet opnieuw moeten installeren, maar wel opnieuw moeten inladen met behulp van deze *library* functie.
-
-In het volgende voorbeeld wordt het *'yarrr'* package geïnstalleerd.
-
-```{r}
-#install.packages("yarrr") #eenmalig
-library('yarrr')
-
-```
-
-Uit deze package zal nu de *Pirates* dataset gebruikt worden. Om een kort overzicht te krijgen van de eerste 6 observaties en hun variabelen van een dataset, kan je de *head* functie gebruiken.
-
-```{r}
-head(pirates)
-```
-
-Om de volledige dataset in een apart venster te openen voor een grondigere inspectie, kan de *View* functie gebruikt worden.
-
-```{r}
-View(pirates)
-```
-
-We zien hier dat deze dataset verschillende types variabelen bevat: de variabele *height* en *weight* zijn van het type 'Numeric', terwijl de variabele *favorite.pirate* bijvoorbeeld van het type 'Character' is. Om enkel de data types van alle variabelen te krijgen, kan je de *str* functie gebruiken. Het is altijd een goed idee om te kijken wat de huidige data types van iedere variabele is voordat je start met het manipuleren en analyseren van de data.
-
-
-```{r}
-str(pirates)
-```
-
-Hoewel je dataset voornamelijk numerieke en categorische variabelen bevat, zou het eventueel voor een variabele zoals *headband* of *eyepatch* handiger kunnen zijn om deze als factor te gebruiken omdat je dan de dataset kan indelen op bases van het wel of niet dragen van een hoofdband of ooglapje. De keuze van het omzetten van variabelen naar het data type factor hangt natuurlijk het meest af van de soort analyse die je wilt uitvoeren.
-
-Soms is het ook al genoeg om te weten hoeveel rijen (observaties) en kolommen (variabelen) een dataset bevat. Deze info noemt men ook wel de **dimensie** van de dataset en kan je krijgen via de functie *dim*
-
-```{r}
-dim(pirates)
-```
-
-
-Om een bepaalde kolom of variabele uit een dataset op te roepen, kan het dollar teken *$* gebruikt worden. De volgende code geeft de vector met alle favoriete piraten weer, opgeslagen in de variabele *favorite.pirate*
-
-```{r, eval = FALSE}
-pirates$favorite.pirate
-```
-
-## Indexeren
-
-Het werken met vectoren datasets in R gaat zeer flexibel. Als je slechts een deel van de data of vector wilt gebruiken, dan kan je dit doen met behulp van vierkante haken '[]', waartussen je specifieert in welk deel van de data je geïnteresseerd bent.
-
-Krijg alleen het eerste element van een vector:
-
-```{r}
-vec <- c(10:15) # maak een vector genaamd 'vec' met waarden 10 tot en met 15 in.
-vec[1] # kies het eerste element van de vector
-```
-
-Krijg het tweede en vierde element van de vector:
-
-```{r}
-vec[c(2,4)]
-```
-
-Merk op dat deze keer je een vector specifieert die aangeeft welke indices je wilt bekijken. Krijg het vierde tot en met het tiende element van de variabele *favorite.pirate* uit de pirates dataset:
-
-```{r}
-pirates$favorite.pirate[4:10]
-```
-
-Merk op dat je hierboven dus enkel met 1-dimensionale vectors gewerkt hebt. Als je met een dataset wilt werken, wat 2-dimensionaal is, dan heb je twee argumenten nodig die gespecifieerd moeten worden tussen de vierkante haakjes. Als je het element op de tweede rij in de derde kolom wilt hebben bijvoorbeeld, gebruik je de volgende code.
-
-```{r}
-pirates[2, 3]
-```
-
-Dit komt dus overeen met de waarde van de derde variabele (wat leeftijd is) van observatie 2. In het algemeen geldt dus dat de eerste waarde (voor de komma) tussen de vierkante haakjes de *rijen* of *observaties* zijn. De tweede waarde (na de komma) geeft de *kolom* of *variabele*. Wil je alle gegevens hebben van een bepaalde observatie, dan ben je eigenlijk opzoek naar de waarde van alle kolommen voor een gegeven rij. Voor observatie 2 wordt dit:
-
-```{r, eval = FALSE}
-pirates[2, ]
-```
-
-Omgekeerd, kan je de waarden van alle observaties voor een bepaalde variabele opvragen. Stel dat je dit wilt voor variabele 3, leeftijd, dan wordt dit verkregen met behulp van de volgende code:
-
-```{r, eval = FALSE}
-pirates[, 3]
-```
-
-Een alternatief is om de variabele naam zelf te specifiëren:
-
-```{r, eval = FALSE}
-pirates[, 'age']
-```
-
-
-
-Je kan het selecteren van variabelen zo specifiek mogelijk maken als dat je zelf wilt. Stel dat je de tweede, vierde en zesde variabele (lees: kolom) wilt hebben van de eerste tien observaties (lees: rijen), dan gebruik je:
-
-```{r}
-pirates[1:10, c(2,4,6)] # 1:10 specifieert 1 tot en met 10, c(2, 4, 6) specifieert 2, 4 en 6.
-# Dit moet in een vector staan aangezien je meer dan 1 getal tegelijk beschouwt.
-```
-
-Rijen en kolommen kunnen ook geselecteerd worden op een andere manier dan enkel op basis van de index. Zo kan je ze ook selecteren op basis van een conditie. Stel dat je enkel alle data wilt van observaties die een leeftijd hebben groter dan 30, dan gebruik je:
-
-```{r, eval = FALSE}
-pirates[pirates$age > 30,]
-```
-
-Wil je dit nog verfijnen, en bijvoobeeld enkel de hoogte krijgen van mensen met een leeftijd groter dan 30 EN een gewicht kleiner dan 100, dan kan je de volgende code gebruiken.
-
-```{r, eval = FALSE}
-pirates$height[pirates$age > 30 & pirates$weight < 100]
-```
-
-Vergeet niet aanhalingstekens te gebruiken als je een conditie bekijkt van een character of factor variabele. Bijvoorbeeld, wanneer je de leeftijd wilt van alle piraten met een hoofdband OF vourwelijke piraten.
-
-```{r, eval = FALSE}
-pirates$age[pirates$headband == 'yes' | pirates$sex == 'female']
-```
-
-### Ordenen van data
-
-Het is regelmatig handig om bepaalde variabelen te kunnen ordenen. Dit kan je makkelijk doen met de functie *order*. Deze functie gaat, zonder verdere aanpassingen, de variabelen van klein naar groot ordenen. Probeer het maar eens uit met de volgende code.
-
-```{r}
-order(pirates$age)
-```
-
-Het valt meteen op dat nu niet de leeftijden geordend zijn, maar wel de indices van de observaties. Stel dat observatie 350 de laagste leeftijd heeft, dan zal de *order*-functie de index 350 als eerste betal geven in de output. Om de leeftijd te krijgen die bij deze index of observatie hoort, kan je deze verkregen indices gebruiken in de code die de leeftijden van de piraten geeft. De leeftijden van de piraten ordenen gebeurt dus aan de hand van de volgende code.
-
-```{r, eval = FALSE}
-pirates$age[order(pirates$age)]
-```
-
-Het is ook mogelijk om de dataframe te ordenen op basis van leeftijd. Zo zal de info van de eerste observatie nu overeenkomen met de info van de jongste piraat. Hiervoor kijk je dan naar de hele dataset, in plaats van enkel de variabele leeftijd. Aangezien je dus de rijen wilt sorteren op leeftijd, zet je de *order*-functie links van de komma en rechts komt niets om aan te duiden dat je alle kolommen wilt.
-
-```{r, eval = FALSE}
-pirates[order(pirates$age),]
-```
-
-Je kan de dataset op meer dan één variabele sorteren. Je kan bijvoorbeeld eerst sorteren op leeftijd en dan op geslacht.
-
-```{r, eval = FALSE}
-pirates[order(pirates$age, pirates$sex),]
-```
-
-Tot slot is sorteren in de andere richting ook een optie. De piraten sorteren in de dataset van oud naar jong in plaats van jong naar oud, gebruikt het extra argument *decreasing = TRUE* in de *order* functie.
-
-```{r, eval = FALSE}
-pirates[order(pirates$age, decreasing = TRUE),]
-```
-
-## Dataset inlezen via .csv of .txt file.
-
-Het is soms mogelijk dat je een specifieke dataset uit een file op je computer of laptop wilt gebruiken in R. Bijvoorbeeld, je hebt een .csv file uit Excel en wilt deze analyseren in R. Om de data correct te kunnen inlezen in R, moet je goed weten hoe je .csv bestand er uitziet. De belangrijkste factoren die je moet nagaan zijn:
-
-* Bestaat de eerste lijn uit de namen van de variabelen? Zo ja, gebruik dan zometeen het argument *header = TRUE*, zo niet, dan gebruik je *header = FALSE*.
-
-* Hoe zijn de verschillende kolommen gescheiden? 
-
-  + Indien door witruimtes, gebruik dan *sep = ''* of *sep = "\t"*
-  + Indien door een komma, gebruik dan *sep = ','*
-  + Indien door een puntkomma, gebruik dan *sep = ';'*
-  + ...
-
-* Welke decimale tekens worden er gebruikt? Indien gescheiden door een komma, gebruik dan dec = ",", anders gebruik dan dec = ".".
-
-* Hoe worden ontbrekende waarden voorgesteld? 
-
-  + Indien door een lege cel, gebruik dan *na.strings=' '*
-  + Indien door 'NA', gebruik dan *na.strings = 'NA'*
-  + Indien door een vraagteken, gebruik dan *na.strings = '?'*
-
-Om een dataset in te laden waarbij de eerste rij de namen variabelen bevat, waarbij de kolommen gescheiden zijn door een puntkomma, waarbij de decimalen gescheiden worden door een punt en waarbij ontbrekende waarden vervangen zijn door een 'NA', gebruik je de volgende code. Merk op dat de functie *read.csv* gebruikt wordt omdat het doel is om een .csv bestand in te laden.
-
-```{r, eval = FALSE}
-data <- read.csv(file.choose(), header = TRUE, dec = '.', na.strings = 'NA')
-```
-
-Door het argument *file.choose()* zal een extra venster geopend worden om door je documenten te browsen waardoor je de dataset kan zoeken en aanklikken.
-
-Om .txt bestanden in te laden, doorga je eerste dezelfde stappen zoals je doet bij een Excel file, maar is enkel de functie anders. Nu gebruik je *read.table* in plaats van *read.csv*.
-
-```{r, eval = FALSE}
-data <- read.table(file.choose(), header = TRUE, dec = '.', na.strings = 'NA')
-```
-
-Het inlezen van data hoeft echter niet altijd via functies te gaan. In het *Environment*-paneel rechtsboven is er ook een knop 'Import Dataset'. Als je hierop klikt, kan je verschillende soorten bestanden inlezen. De knoppen met *From Text* dienen om een .txt file in te lezen, terwijl de knop *From Excel* gebruikt kan worden om .xslx files in te lezen. (Let op: als je een .csv file hebt, moet je deze eerst omzetten naar een .xslx file om die via hier in te lezen.)
-
-Er is echter nog een andere manier om datasets in te lezen. Dit doe je met de **import**-wizard. Je kan deze bereiken door bijvoorbeeld te klikken op File > Import Dataset en vervolgens het juiste type te specifiëren. .csv en .xlsx bestanden kan je zo inlezen door vervolgens op *From Excel..* te klikken en naar het juiste bestand op je laptop of pc te browsen.
-
-## Zelf een dataset maken & manipulatie van de dataset
-
-Tot slot kan je ook zelf een dataset te maken, startend van 'scratch'. Dit kan bijvoorbeeld door het gebruik van de functie *data.frame*. In deze functie specifieer je de kolommen van je dataset via vectoren. Een dataset bestaande uit 4 personen waarin hun naam, leeftijd en lengte gegeven zijn, kan als volgt gemaakt worden.
-
-```{r}
-data <- data.frame(naam = c('Joris', 'Rik', 'Luna'), leeftijd = c(25, 34, 29), 
-                   lengte = c(180, 185, 175))
-data
-```
-
-Je kan ook de vectoren al voor de aanmaak van de dataset definiëren of later nog vectoren toevoegen. Om één of meer kolommen toe te voegen aan een dataset, kan de functie *cbind* ('c' van column, i.e. kolom) gebruikt worden.
-
-```{r}
-naam <- c('Thomas', 'Stef', 'Mirthe')
-leeftijd <- c(23, 30, 19)
-lengte <- c(187, 182, 179)
-data_new <- data.frame(naam, leeftijd, lengte)
-data_new
-
-# Toevoegen van extra variabele: huisdier
-
-huisdier <- c('Hond', 'Kip', 'Kat')
-data_new <- cbind(data_new, huisdier)
-data_new
-```
-
-Het is mogelijk om ook de naam de variabelen te vervangen door nieuwe namen. Om de namen uit een dataset te krijgen, kan je de functie *names* gebruiken op je dataset. Door daarna een nieuwe vector met namen hieraan toe te kunnen, worden de namen geüpdate.
-
-```{r}
-names(data_new) <- c('Voornaam', 'Leeftijd in 2023', 'Lengte in cm', 'Huisdieren')
-data_new
-```
-
-In tegenstelling tot het toevoegen van een extra kolom, is het ook mogelijk om één of meer extra observaties of rijen toe te voegen. Dit gebeurt via de functie *rbind* ('r' van row, i.e. rij). 
-
-**Let op:** om een rij bij te voegen moeten de elementen in deze rij exact dezelfde data types hebben als de andere rijen en in dezelfde volgorde. Een rij toevoegen aan de dataset *data_new* kan dus enkel als het eerste en laatste element een character zijn en als het tweede en derde element numerieke waarden zijn.
-
-```{r}
-extra_persoon <- c('Lotte', 26, 176, 'Hamster') # Creëer een extra persoon
-data_new <- rbind(data_new, extra_persoon) # Voeg deze persoon toe aan de dataset
-data_new
-```
-
-Ten slotte is het ook mogelijk om bewerkingen te doen met volledige variabelen. Bijvoorbeeld alle leeftijden van centimer naar meter omzetten en dit toevoegen aan de data set als een nieuwe variabele, genaamd *meters*, kan op de volgende manier:
-
-```{r}
-data_new$`Lengte in cm` <- as.numeric(data_new$`Lengte in cm`)
-data_new$meters <- data_new$`Lengte in cm`/100
-```
-
-<!--chapter:end:04-datasets.Rmd-->
-
-# Data-analyse & visualisatie
-
-Nu de data ingelezen is kan het in R makkelijk samengevat en gevisualiseerd worden. Data-analyse en visualisatie kan opgesplitst worden voor numerieke en character of categorische variabelen.
-
-## Voor numerieke variabelen.
-
-Voor het illustreren van enkele simpele analyse en visualisatie technieken voor numerieke variabelen, zal de piraten data beschouwd worden en meer bepaald de variablen voor hoogte: *height*.
-In de volgende code wordt het gemiddelde van de hoogtes berekend met de functie *mean*. Even snel kunnen ook het minimum, maximum en de mediaan berekend worden met de funties *min*, *max* en *median* .
-
-```{r}
-mean(pirates$height)
-min(pirates$height)
-max(pirates$height)
-median(pirates$height)
-```
-
-Om meteen een overzicht te krijgen van de belangrijkste samenvattende maten voor een variabele, kan je ook de *summary* functie gebruiken.
-
-```{r}
-summary(pirates$height)
-```
-
-
-Om de waarden van een bepaalde variabelen te visualiseren, kan je een histogram of boxplot maken met de functies *hist* en *boxplot* respectievelijk.
-
-```{r}
-hist(pirates$height)
-boxplot(pirates$height)
-```
-
-Zelfs in deze basisfuncties van R zoals *hist* en *boxplot*, zijn er nog steeds tal van opties om de figuur wat op te pimpen. De titel van het histogram veranderen kan met het argument *main=* waarna je de titel tussen aanhalingstekens specifieert. Hetzelfde geldt voor de namen van de x-as en y-as die aangepast kunnen worden via de argumenten *xlab =* en *ylab=* respectievelijk. Zie je liever een rode kleur in plaats van grijs? Dan kan dit aangepast worden via het argument *col=*. Voor meer mogelijkheden, zie de help functie van het histogram (*?hist*). Een voorbeeld van een bewerkt histogram wordt hieronder gegeven.
-
-```{r}
-hist(pirates$height, main = 'Titel histogram', xlab = 'Naam x-as', ylab = 'Naam y-as', col = 'red')
-```
-
-## Voor niet-numerieke variabelen.
-
-Voor character of factor variabelen is het uiteraard niet zinvol om maten zoals het minimum, de mediaan, ... te berekenen. Voor dit soort variabelen worden eerder tabellen gemaakt die weergeven hoe vaak iedere categorie of unieke waarde van een character variabele voorkomen. Om dit te illustreren, zal de variabele uit de *pirates* dataset gebruikt worden die de favoriete piraat aanduidt: *favorite.pirate*. Met behulp van de functie *table* wordt een tabel gemaakt die voor iedere piraat weergeeft hoevaak deze als favoriet is gekozen in totaal.
-
-```{r}
-table(pirates$favorite.pirate)
-```
-Dit kan ook uitgebreid worden naar meerdere character variabelen. Als je bijvoorbeeld de verdeling van de favoriete piraten voor de verschillende geslachten apart wilt zien, kan je de volgende code gebruiken.
-
-```{r}
-table(pirates$sex, pirates$favorite.pirate)
-```
-
-Voor het visualiseren van de data is een figuur zoals een boxplot opnieuw niet meer nuttig voor variabelen van het type character of factor. Een betere optie is de barplot, die gemaakt kan worden via de functie *barplot*. De barplot functie heeft de volgende informatie nodig: welke categorieën er zijn (hier dus welke favoriete piraten opties er zijn) en hoe vaak iedere categorie/piraat gekozen is. Dit is exact wat je kreeg uit de tabel hierboven! Om deze reden geef je dus niet gewoon de vector met favoriete piraten mee in de *barplot* functie, maar de tabel ervan.
-
-```{r}
-barplot(table(pirates$favorite.pirate), cex.names = 0.7)
-```
-Merk op dat er nog een extra argument gebruikt werd in bovenstaande functie, namelijk, *cex.names =*. Dit werd gebruikt om de lettertypes van de namen iets kleiner te maken dan standaard door R werd gedaan (in dit geval 0.7 keer kleiner dan de default). Indien dit niet werd gedaan, waren sommige namen te lang om een duidelijke plot te krijgen. 
-
-<!--chapter:end:05-visualisatie.Rmd-->
-
-# Statistische analyses in R
-
-R is tot nog veel meer in staat dan enkel histogrammen of barplots maken. In deze sectie worden enkele eenvoudige univariate analyses in R besproken. Hierin wordt vooral gefocust op de link met hypothese testen, iets wat regelmatig terugkomt in zowel middelbaar als hoger onderwijs.
-
-Ten eerste kan het zijn dat je vermoed dat de leeftijd voor vrouwelijke piraten gemiddeld gezien verschilt van die van mannelijke piraten. Als je aanneemt dat de observaties allemaal onafhankelijk zijn van elkaar, dan is een t-test een goede optie om deze hypothese te testen. Deze test wordt uitgevoerd door het commando *t.test*. Deze functie heeft enerzijds de twee groepen nodig die je vergelijkt (dus de leeftijden van alle vrouwen en de leeftijden van alle mannen). Verder kan je ook nog extra specifiëren of je één- of tweezijdig wilt testen via het argument *alternative = c("two.sided","less", "greater")* waarbij je dus één van deze 3 kiest. *two.sided* wordt automatisch gebruikt als je dit argument niet specifieert. Ook een gepaarde t-test kan gebruikt worden. Dit gebeurt door middel van het argument *paired = TRUE*. Dit argument staat by default op *paired = FALSE*, waardoor het dus geen gepaarde t-test uitvoert. Voor meer specificaties van deze functie, zie de help-functie *?t.test*. De code voor het tweezijdig testen van het verschil in leeftijd tussen mannen en vrouwen met onafhankelijke waardes wordt dan:
-
-```{r}
-t.test(pirates$age[pirates$sex == 'male'], pirates$age[pirates$sex == 'female'])
-```
-In de output van deze functie vind je terug wat de nulhypothese is, wat de gemiddeldes zijn voor beide leeftijden die je vergelijkt en wat het 95% betrouwbaarheidsinterval is voor het gemiddelde verschil tussen beide groepen. Tot slot staan ook de waarde van de test statistiek *t*, de vrijheidsgraden en de p-waarde gegeven. Aangezien de p-waarde kleiner is dan 0.05, zou je kunnen besluiten dat er wel degelijk een verschil is tussen de gemiddelde leeftijd van vrouwen en mannen op een 5% significantieniveau.
-
-Om associaties tussen variabelen te bestuderen, kunnen regressie-analyses gedaan worden. Als je het effect van leeftijd op de lengte van de baard wilt onderzoeken, kan een lineair regressie model gebruikt worden (in de aanname dat alle voorwaarden voor een lineaire regressie voldaan zijn). De functie hiervoor is *lm(y~x)*, waarbij *lm* de afkorting is van *linear model* en waarbij *x* de variabele is waarvan je het effect op de variabele *y* wilt berekenen. Voor dit voorbeeld wil je het effect van de leeftijd op de lengte van de baard onderzoeken en wordt het model dus:
-
-```{r}
-model <- lm(beard.length ~ age, data = pirates)
-summary(model)
-```
-
-De output voor dit model zegt dat er een significant effect is op een 5% significantieniveau en dat, met dalende leeftijd, de lengte van de baard gemiddeld gezien stijgt.
-
-Deze regressielijn kan ook grafisch voorgesteld worden op een scatterplot. De functie *plot* maakt een scatterplot van de twee variabelen ten opzichte van elkaar. De functie *abline* maakt een rechte met de gegevens uit het lineair model. Dit wordt de regressierechte.
-
-```{r}
-plot(pirates$beard.length, pirates$age)
-abline(model, data = pirates)
-
-```
-
-Ten slotte is het ook mogelijk om te werken met verdelingen en kansrekenen in R. Een overzicht van de belangrijkste functies en hun toepassingen kan gevonden worden via de [volgende link]### Extra kansrekenen: (https://colab.research.google.com/drive/1iImgchUIuURmCDYlvsj7_j202fo_JaSJ#scrollTo=cB9jkCZyD0T7)
-
-<!--chapter:end:06-analyse.Rmd-->
-
 # Een afsluiter
 
 Dit document geeft een korte inleiding tot de programmeertaal van R. Enkele van de vele mogelijke basis functies werden geïllustreerd, maar hier stopt het zeker niet. Er zijn bijvoorbeeld nog meer dan 20 000 R packages die je kan installeren, elk met hun eigen handige functies voor specifieke doelen. Twee handige packages die vaak gebruikt worden en zeker de moeite zijn om eens verder te bekijken, zijn de volgende. Om bijvoorbeeld mooiere grafieken te maken, kan je de functies in het *ggplot2*-package gebruiken. Om makkelijk data sets te bewerken of te filteren, worden de functies in het *dplyr*-package vaak gebruikt. 
 
-<!--chapter:end:07-afsluiter.Rmd-->
+<!--chapter:end:04-afsluiter.Rmd-->
 
 ---
 title: "\LIntroductie programmeren in R"
@@ -1543,4 +1199,343 @@ Dit document geeft een korte inleiding tot de programmeertaal van R. Enkele van 
 
 
 <!--chapter:end:syllabus.Rmd-->
+
+# Datasets in R
+
+In dit hoofdstuk wordt uitgelegd hoe je een dataset kan inlezen uit, bijvoorbeeld, een Excel bestand. Verder wordt er ook uitgelegd hoe je zelf een dataset kan maken in R.
+
+## Dataset inlezen uit R package
+
+De functies en data die tot nu gebruikt werden zitten standaard in R software omdat ze gemaakt zijn door de originele auteurs. Het is echter mogelijk om ook datasets en code van andere personen te gebruiken. Hiervoor moet je een *package* installeren. Het gebruik van packages in R kan je zien als het gebruik van een lamp: net zoals je éénmalig een lamp installeert, zal je éénmalig het package installeren. Dit doe je met behulp van de functie *install.packages("naam")*. Op de plek waar nu *naam* staat, zet je de naam van het package dat je wilt installeren.
+Verder, om een lamp te kunnen gebruiken, moet je hem telkens aanzetten. Dit werkt ook zo met packages: iedere R sessie waarbij je een bepaald package wilt gebruiken, moet je deze eerst in de sessie laden. Dit doe je met behulp van de functie *library('naam')*. 
+Als je de R sessie afsluit en een nieuwe R sessie opent zal je dus het package niet opnieuw moeten installeren, maar wel opnieuw moeten inladen met behulp van deze *library* functie.
+
+In het volgende voorbeeld wordt het *'yarrr'* package geïnstalleerd.
+
+```{r}
+#install.packages("yarrr") #eenmalig
+library('yarrr')
+
+```
+
+Uit deze package zal nu de *Pirates* dataset gebruikt worden. Om een kort overzicht te krijgen van de eerste 6 observaties en hun variabelen van een dataset, kan je de *head* functie gebruiken.
+
+```{r}
+head(pirates)
+```
+
+Om de volledige dataset in een apart venster te openen voor een grondigere inspectie, kan de *View* functie gebruikt worden.
+
+```{r}
+View(pirates)
+```
+
+We zien hier dat deze dataset verschillende types variabelen bevat: de variabele *height* en *weight* zijn van het type 'Numeric', terwijl de variabele *favorite.pirate* bijvoorbeeld van het type 'Character' is. Om enkel de data types van alle variabelen te krijgen, kan je de *str* functie gebruiken. Het is altijd een goed idee om te kijken wat de huidige data types van iedere variabele is voordat je start met het manipuleren en analyseren van de data.
+
+
+```{r}
+str(pirates)
+```
+
+Hoewel je dataset voornamelijk numerieke en categorische variabelen bevat, zou het eventueel voor een variabele zoals *headband* of *eyepatch* handiger kunnen zijn om deze als factor te gebruiken omdat je dan de dataset kan indelen op bases van het wel of niet dragen van een hoofdband of ooglapje. De keuze van het omzetten van variabelen naar het data type factor hangt natuurlijk het meest af van de soort analyse die je wilt uitvoeren.
+
+Soms is het ook al genoeg om te weten hoeveel rijen (observaties) en kolommen (variabelen) een dataset bevat. Deze info noemt men ook wel de **dimensie** van de dataset en kan je krijgen via de functie *dim*
+
+```{r}
+dim(pirates)
+```
+
+
+Om een bepaalde kolom of variabele uit een dataset op te roepen, kan het dollar teken *$* gebruikt worden. De volgende code geeft de vector met alle favoriete piraten weer, opgeslagen in de variabele *favorite.pirate*
+
+```{r, eval = FALSE}
+pirates$favorite.pirate
+```
+
+## Indexeren
+
+Het werken met vectoren datasets in R gaat zeer flexibel. Als je slechts een deel van de data of vector wilt gebruiken, dan kan je dit doen met behulp van vierkante haken '[]', waartussen je specifieert in welk deel van de data je geïnteresseerd bent.
+
+Krijg alleen het eerste element van een vector:
+
+```{r}
+vec <- c(10:15) # maak een vector genaamd 'vec' met waarden 10 tot en met 15 in.
+vec[1] # kies het eerste element van de vector
+```
+
+Krijg het tweede en vierde element van de vector:
+
+```{r}
+vec[c(2,4)]
+```
+
+Merk op dat deze keer je een vector specifieert die aangeeft welke indices je wilt bekijken. Krijg het vierde tot en met het tiende element van de variabele *favorite.pirate* uit de pirates dataset:
+
+```{r}
+pirates$favorite.pirate[4:10]
+```
+
+Merk op dat je hierboven dus enkel met 1-dimensionale vectors gewerkt hebt. Als je met een dataset wilt werken, wat 2-dimensionaal is, dan heb je twee argumenten nodig die gespecifieerd moeten worden tussen de vierkante haakjes. Als je het element op de tweede rij in de derde kolom wilt hebben bijvoorbeeld, gebruik je de volgende code.
+
+```{r}
+pirates[2, 3]
+```
+
+Dit komt dus overeen met de waarde van de derde variabele (wat leeftijd is) van observatie 2. In het algemeen geldt dus dat de eerste waarde (voor de komma) tussen de vierkante haakjes de *rijen* of *observaties* zijn. De tweede waarde (na de komma) geeft de *kolom* of *variabele*. Wil je alle gegevens hebben van een bepaalde observatie, dan ben je eigenlijk opzoek naar de waarde van alle kolommen voor een gegeven rij. Voor observatie 2 wordt dit:
+
+```{r, eval = FALSE}
+pirates[2, ]
+```
+
+Omgekeerd, kan je de waarden van alle observaties voor een bepaalde variabele opvragen. Stel dat je dit wilt voor variabele 3, leeftijd, dan wordt dit verkregen met behulp van de volgende code:
+
+```{r, eval = FALSE}
+pirates[, 3]
+```
+
+Een alternatief is om de variabele naam zelf te specifiëren:
+
+```{r, eval = FALSE}
+pirates[, 'age']
+```
+
+
+
+Je kan het selecteren van variabelen zo specifiek mogelijk maken als dat je zelf wilt. Stel dat je de tweede, vierde en zesde variabele (lees: kolom) wilt hebben van de eerste tien observaties (lees: rijen), dan gebruik je:
+
+```{r}
+pirates[1:10, c(2,4,6)] # 1:10 specifieert 1 tot en met 10, c(2, 4, 6) specifieert 2, 4 en 6.
+# Dit moet in een vector staan aangezien je meer dan 1 getal tegelijk beschouwt.
+```
+
+Rijen en kolommen kunnen ook geselecteerd worden op een andere manier dan enkel op basis van de index. Zo kan je ze ook selecteren op basis van een conditie. Stel dat je enkel alle data wilt van observaties die een leeftijd hebben groter dan 30, dan gebruik je:
+
+```{r, eval = FALSE}
+pirates[pirates$age > 30,]
+```
+
+Wil je dit nog verfijnen, en bijvoobeeld enkel de hoogte krijgen van mensen met een leeftijd groter dan 30 EN een gewicht kleiner dan 100, dan kan je de volgende code gebruiken.
+
+```{r, eval = FALSE}
+pirates$height[pirates$age > 30 & pirates$weight < 100]
+```
+
+Vergeet niet aanhalingstekens te gebruiken als je een conditie bekijkt van een character of factor variabele. Bijvoorbeeld, wanneer je de leeftijd wilt van alle piraten met een hoofdband OF vourwelijke piraten.
+
+```{r, eval = FALSE}
+pirates$age[pirates$headband == 'yes' | pirates$sex == 'female']
+```
+
+### Ordenen van data
+
+Het is regelmatig handig om bepaalde variabelen te kunnen ordenen. Dit kan je makkelijk doen met de functie *order*. Deze functie gaat, zonder verdere aanpassingen, de variabelen van klein naar groot ordenen. Probeer het maar eens uit met de volgende code.
+
+```{r}
+order(pirates$age)
+```
+
+Het valt meteen op dat nu niet de leeftijden geordend zijn, maar wel de indices van de observaties. Stel dat observatie 350 de laagste leeftijd heeft, dan zal de *order*-functie de index 350 als eerste betal geven in de output. Om de leeftijd te krijgen die bij deze index of observatie hoort, kan je deze verkregen indices gebruiken in de code die de leeftijden van de piraten geeft. De leeftijden van de piraten ordenen gebeurt dus aan de hand van de volgende code.
+
+```{r, eval = FALSE}
+pirates$age[order(pirates$age)]
+```
+
+Het is ook mogelijk om de dataframe te ordenen op basis van leeftijd. Zo zal de info van de eerste observatie nu overeenkomen met de info van de jongste piraat. Hiervoor kijk je dan naar de hele dataset, in plaats van enkel de variabele leeftijd. Aangezien je dus de rijen wilt sorteren op leeftijd, zet je de *order*-functie links van de komma en rechts komt niets om aan te duiden dat je alle kolommen wilt.
+
+```{r, eval = FALSE}
+pirates[order(pirates$age),]
+```
+
+Je kan de dataset op meer dan één variabele sorteren. Je kan bijvoorbeeld eerst sorteren op leeftijd en dan op geslacht.
+
+```{r, eval = FALSE}
+pirates[order(pirates$age, pirates$sex),]
+```
+
+Tot slot is sorteren in de andere richting ook een optie. De piraten sorteren in de dataset van oud naar jong in plaats van jong naar oud, gebruikt het extra argument *decreasing = TRUE* in de *order* functie.
+
+```{r, eval = FALSE}
+pirates[order(pirates$age, decreasing = TRUE),]
+```
+
+## Dataset inlezen via .csv of .txt file.
+
+Het is soms mogelijk dat je een specifieke dataset uit een file op je computer of laptop wilt gebruiken in R. Bijvoorbeeld, je hebt een .csv file uit Excel en wilt deze analyseren in R. Om de data correct te kunnen inlezen in R, moet je goed weten hoe je .csv bestand er uitziet. De belangrijkste factoren die je moet nagaan zijn:
+
+* Bestaat de eerste lijn uit de namen van de variabelen? Zo ja, gebruik dan zometeen het argument *header = TRUE*, zo niet, dan gebruik je *header = FALSE*.
+
+* Hoe zijn de verschillende kolommen gescheiden? 
+
+  + Indien door witruimtes, gebruik dan *sep = ''* of *sep = "\t"*
+  + Indien door een komma, gebruik dan *sep = ','*
+  + Indien door een puntkomma, gebruik dan *sep = ';'*
+  + ...
+
+* Welke decimale tekens worden er gebruikt? Indien gescheiden door een komma, gebruik dan dec = ",", anders gebruik dan dec = ".".
+
+* Hoe worden ontbrekende waarden voorgesteld? 
+
+  + Indien door een lege cel, gebruik dan *na.strings=' '*
+  + Indien door 'NA', gebruik dan *na.strings = 'NA'*
+  + Indien door een vraagteken, gebruik dan *na.strings = '?'*
+
+Om een dataset in te laden waarbij de eerste rij de namen variabelen bevat, waarbij de kolommen gescheiden zijn door een puntkomma, waarbij de decimalen gescheiden worden door een punt en waarbij ontbrekende waarden vervangen zijn door een 'NA', gebruik je de volgende code. Merk op dat de functie *read.csv* gebruikt wordt omdat het doel is om een .csv bestand in te laden.
+
+```{r, eval = FALSE}
+data <- read.csv(file.choose(), header = TRUE, dec = '.', na.strings = 'NA')
+```
+
+Door het argument *file.choose()* zal een extra venster geopend worden om door je documenten te browsen waardoor je de dataset kan zoeken en aanklikken.
+
+Om .txt bestanden in te laden, doorga je eerste dezelfde stappen zoals je doet bij een Excel file, maar is enkel de functie anders. Nu gebruik je *read.table* in plaats van *read.csv*.
+
+```{r, eval = FALSE}
+data <- read.table(file.choose(), header = TRUE, dec = '.', na.strings = 'NA')
+```
+
+Het inlezen van data hoeft echter niet altijd via functies te gaan. In het *Environment*-paneel rechtsboven is er ook een knop 'Import Dataset'. Als je hierop klikt, kan je verschillende soorten bestanden inlezen. De knoppen met *From Text* dienen om een .txt file in te lezen, terwijl de knop *From Excel* gebruikt kan worden om .xslx files in te lezen. (Let op: als je een .csv file hebt, moet je deze eerst omzetten naar een .xslx file om die via hier in te lezen.)
+
+Er is echter nog een andere manier om datasets in te lezen. Dit doe je met de **import**-wizard. Je kan deze bereiken door bijvoorbeeld te klikken op File > Import Dataset en vervolgens het juiste type te specifiëren. .csv en .xlsx bestanden kan je zo inlezen door vervolgens op *From Excel..* te klikken en naar het juiste bestand op je laptop of pc te browsen.
+
+## Zelf een dataset maken & manipulatie van de dataset
+
+Tot slot kan je ook zelf een dataset te maken, startend van 'scratch'. Dit kan bijvoorbeeld door het gebruik van de functie *data.frame*. In deze functie specifieer je de kolommen van je dataset via vectoren. Een dataset bestaande uit 4 personen waarin hun naam, leeftijd en lengte gegeven zijn, kan als volgt gemaakt worden.
+
+```{r}
+data <- data.frame(naam = c('Joris', 'Rik', 'Luna'), leeftijd = c(25, 34, 29), 
+                   lengte = c(180, 185, 175))
+data
+```
+
+Je kan ook de vectoren al voor de aanmaak van de dataset definiëren of later nog vectoren toevoegen. Om één of meer kolommen toe te voegen aan een dataset, kan de functie *cbind* ('c' van column, i.e. kolom) gebruikt worden.
+
+```{r}
+naam <- c('Thomas', 'Stef', 'Mirthe')
+leeftijd <- c(23, 30, 19)
+lengte <- c(187, 182, 179)
+data_new <- data.frame(naam, leeftijd, lengte)
+data_new
+
+# Toevoegen van extra variabele: huisdier
+
+huisdier <- c('Hond', 'Kip', 'Kat')
+data_new <- cbind(data_new, huisdier)
+data_new
+```
+
+Het is mogelijk om ook de naam de variabelen te vervangen door nieuwe namen. Om de namen uit een dataset te krijgen, kan je de functie *names* gebruiken op je dataset. Door daarna een nieuwe vector met namen hieraan toe te kunnen, worden de namen geüpdate.
+
+```{r}
+names(data_new) <- c('Voornaam', 'Leeftijd in 2023', 'Lengte in cm', 'Huisdieren')
+data_new
+```
+
+In tegenstelling tot het toevoegen van een extra kolom, is het ook mogelijk om één of meer extra observaties of rijen toe te voegen. Dit gebeurt via de functie *rbind* ('r' van row, i.e. rij). 
+
+**Let op:** om een rij bij te voegen moeten de elementen in deze rij exact dezelfde data types hebben als de andere rijen en in dezelfde volgorde. Een rij toevoegen aan de dataset *data_new* kan dus enkel als het eerste en laatste element een character zijn en als het tweede en derde element numerieke waarden zijn.
+
+```{r}
+extra_persoon <- c('Lotte', 26, 176, 'Hamster') # Creëer een extra persoon
+data_new <- rbind(data_new, extra_persoon) # Voeg deze persoon toe aan de dataset
+data_new
+```
+
+Ten slotte is het ook mogelijk om bewerkingen te doen met volledige variabelen. Bijvoorbeeld alle leeftijden van centimer naar meter omzetten en dit toevoegen aan de data set als een nieuwe variabele, genaamd *meters*, kan op de volgende manier:
+
+```{r}
+data_new$`Lengte in cm` <- as.numeric(data_new$`Lengte in cm`)
+data_new$meters <- data_new$`Lengte in cm`/100
+```
+
+<!--chapter:end:WIP04-datasets.Rmd-->
+
+# Data-analyse & visualisatie
+
+Nu de data ingelezen is kan het in R makkelijk samengevat en gevisualiseerd worden. Data-analyse en visualisatie kan opgesplitst worden voor numerieke en character of categorische variabelen.
+
+## Voor numerieke variabelen.
+
+Voor het illustreren van enkele simpele analyse en visualisatie technieken voor numerieke variabelen, zal de piraten data beschouwd worden en meer bepaald de variablen voor hoogte: *height*.
+In de volgende code wordt het gemiddelde van de hoogtes berekend met de functie *mean*. Even snel kunnen ook het minimum, maximum en de mediaan berekend worden met de funties *min*, *max* en *median* .
+
+```{r}
+mean(pirates$height)
+min(pirates$height)
+max(pirates$height)
+median(pirates$height)
+```
+
+Om meteen een overzicht te krijgen van de belangrijkste samenvattende maten voor een variabele, kan je ook de *summary* functie gebruiken.
+
+```{r}
+summary(pirates$height)
+```
+
+
+Om de waarden van een bepaalde variabelen te visualiseren, kan je een histogram of boxplot maken met de functies *hist* en *boxplot* respectievelijk.
+
+```{r}
+hist(pirates$height)
+boxplot(pirates$height)
+```
+
+Zelfs in deze basisfuncties van R zoals *hist* en *boxplot*, zijn er nog steeds tal van opties om de figuur wat op te pimpen. De titel van het histogram veranderen kan met het argument *main=* waarna je de titel tussen aanhalingstekens specifieert. Hetzelfde geldt voor de namen van de x-as en y-as die aangepast kunnen worden via de argumenten *xlab =* en *ylab=* respectievelijk. Zie je liever een rode kleur in plaats van grijs? Dan kan dit aangepast worden via het argument *col=*. Voor meer mogelijkheden, zie de help functie van het histogram (*?hist*). Een voorbeeld van een bewerkt histogram wordt hieronder gegeven.
+
+```{r}
+hist(pirates$height, main = 'Titel histogram', xlab = 'Naam x-as', ylab = 'Naam y-as', col = 'red')
+```
+
+## Voor niet-numerieke variabelen.
+
+Voor character of factor variabelen is het uiteraard niet zinvol om maten zoals het minimum, de mediaan, ... te berekenen. Voor dit soort variabelen worden eerder tabellen gemaakt die weergeven hoe vaak iedere categorie of unieke waarde van een character variabele voorkomen. Om dit te illustreren, zal de variabele uit de *pirates* dataset gebruikt worden die de favoriete piraat aanduidt: *favorite.pirate*. Met behulp van de functie *table* wordt een tabel gemaakt die voor iedere piraat weergeeft hoevaak deze als favoriet is gekozen in totaal.
+
+```{r}
+table(pirates$favorite.pirate)
+```
+Dit kan ook uitgebreid worden naar meerdere character variabelen. Als je bijvoorbeeld de verdeling van de favoriete piraten voor de verschillende geslachten apart wilt zien, kan je de volgende code gebruiken.
+
+```{r}
+table(pirates$sex, pirates$favorite.pirate)
+```
+
+Voor het visualiseren van de data is een figuur zoals een boxplot opnieuw niet meer nuttig voor variabelen van het type character of factor. Een betere optie is de barplot, die gemaakt kan worden via de functie *barplot*. De barplot functie heeft de volgende informatie nodig: welke categorieën er zijn (hier dus welke favoriete piraten opties er zijn) en hoe vaak iedere categorie/piraat gekozen is. Dit is exact wat je kreeg uit de tabel hierboven! Om deze reden geef je dus niet gewoon de vector met favoriete piraten mee in de *barplot* functie, maar de tabel ervan.
+
+```{r}
+barplot(table(pirates$favorite.pirate), cex.names = 0.7)
+```
+Merk op dat er nog een extra argument gebruikt werd in bovenstaande functie, namelijk, *cex.names =*. Dit werd gebruikt om de lettertypes van de namen iets kleiner te maken dan standaard door R werd gedaan (in dit geval 0.7 keer kleiner dan de default). Indien dit niet werd gedaan, waren sommige namen te lang om een duidelijke plot te krijgen. 
+
+<!--chapter:end:WIP05-visualisatie.Rmd-->
+
+# Statistische analyses in R
+
+R is tot nog veel meer in staat dan enkel histogrammen of barplots maken. In deze sectie worden enkele eenvoudige univariate analyses in R besproken. Hierin wordt vooral gefocust op de link met hypothese testen, iets wat regelmatig terugkomt in zowel middelbaar als hoger onderwijs.
+
+Ten eerste kan het zijn dat je vermoed dat de leeftijd voor vrouwelijke piraten gemiddeld gezien verschilt van die van mannelijke piraten. Als je aanneemt dat de observaties allemaal onafhankelijk zijn van elkaar, dan is een t-test een goede optie om deze hypothese te testen. Deze test wordt uitgevoerd door het commando *t.test*. Deze functie heeft enerzijds de twee groepen nodig die je vergelijkt (dus de leeftijden van alle vrouwen en de leeftijden van alle mannen). Verder kan je ook nog extra specifiëren of je één- of tweezijdig wilt testen via het argument *alternative = c("two.sided","less", "greater")* waarbij je dus één van deze 3 kiest. *two.sided* wordt automatisch gebruikt als je dit argument niet specifieert. Ook een gepaarde t-test kan gebruikt worden. Dit gebeurt door middel van het argument *paired = TRUE*. Dit argument staat by default op *paired = FALSE*, waardoor het dus geen gepaarde t-test uitvoert. Voor meer specificaties van deze functie, zie de help-functie *?t.test*. De code voor het tweezijdig testen van het verschil in leeftijd tussen mannen en vrouwen met onafhankelijke waardes wordt dan:
+
+```{r}
+t.test(pirates$age[pirates$sex == 'male'], pirates$age[pirates$sex == 'female'])
+```
+In de output van deze functie vind je terug wat de nulhypothese is, wat de gemiddeldes zijn voor beide leeftijden die je vergelijkt en wat het 95% betrouwbaarheidsinterval is voor het gemiddelde verschil tussen beide groepen. Tot slot staan ook de waarde van de test statistiek *t*, de vrijheidsgraden en de p-waarde gegeven. Aangezien de p-waarde kleiner is dan 0.05, zou je kunnen besluiten dat er wel degelijk een verschil is tussen de gemiddelde leeftijd van vrouwen en mannen op een 5% significantieniveau.
+
+Om associaties tussen variabelen te bestuderen, kunnen regressie-analyses gedaan worden. Als je het effect van leeftijd op de lengte van de baard wilt onderzoeken, kan een lineair regressie model gebruikt worden (in de aanname dat alle voorwaarden voor een lineaire regressie voldaan zijn). De functie hiervoor is *lm(y~x)*, waarbij *lm* de afkorting is van *linear model* en waarbij *x* de variabele is waarvan je het effect op de variabele *y* wilt berekenen. Voor dit voorbeeld wil je het effect van de leeftijd op de lengte van de baard onderzoeken en wordt het model dus:
+
+```{r}
+model <- lm(beard.length ~ age, data = pirates)
+summary(model)
+```
+
+De output voor dit model zegt dat er een significant effect is op een 5% significantieniveau en dat, met dalende leeftijd, de lengte van de baard gemiddeld gezien stijgt.
+
+Deze regressielijn kan ook grafisch voorgesteld worden op een scatterplot. De functie *plot* maakt een scatterplot van de twee variabelen ten opzichte van elkaar. De functie *abline* maakt een rechte met de gegevens uit het lineair model. Dit wordt de regressierechte.
+
+```{r}
+plot(pirates$beard.length, pirates$age)
+abline(model, data = pirates)
+
+```
+
+Ten slotte is het ook mogelijk om te werken met verdelingen en kansrekenen in R. Een overzicht van de belangrijkste functies en hun toepassingen kan gevonden worden via de [volgende link]### Extra kansrekenen: (https://colab.research.google.com/drive/1iImgchUIuURmCDYlvsj7_j202fo_JaSJ#scrollTo=cB9jkCZyD0T7)
+
+<!--chapter:end:WIP06-analyse.Rmd-->
 
