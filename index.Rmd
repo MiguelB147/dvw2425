@@ -9,13 +9,13 @@ subtitle: Dag van de wetenschap & wiskunde - KULAK Kortrijk
 geometry: margin=3cm
 header-includes:
 - \usepackage{titling}
-- \pretitle{\begin{center}\LARGE\includegraphics[width=4cm]{DSI_Logo.jpg}\\[\bigskipamount]}
+- \pretitle{\begin{center}\LARGE\includegraphics[width=4cm]{dsi.png}\\[\bigskipamount]}
 - \posttitle{\end{center}}
 - \clearpage
 - \newpage
 ---
 
-```{r setup, include=FALSE}
+```{r init, include=FALSE}
 options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(echo = TRUE, 
                       message = FALSE,	
