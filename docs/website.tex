@@ -1,0 +1,968 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{book}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={ Introductie programmeren in R},
+  pdfauthor={Wouter Smeets - wouter.smeets@uhasselt.be; Miguel Beynaerts - miguel.beynaerts@uhasselt.be; Steven Abrams - steven.abrams@uhasselt.be},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{\includegraphics[width=4cm,height=\textheight]{dsi.png}\\
+Introductie programmeren in R}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{Dag van de wetenschap \& wiskunde - KULAK Kortrijk}
+\author{Wouter Smeets - \href{mailto:wouter.smeets@uhasselt.be}{\nolinkurl{wouter.smeets@uhasselt.be}} \and Miguel Beynaerts - \href{mailto:miguel.beynaerts@uhasselt.be}{\nolinkurl{miguel.beynaerts@uhasselt.be}} \and Steven Abrams - \href{mailto:steven.abrams@uhasselt.be}{\nolinkurl{steven.abrams@uhasselt.be}}}
+\date{16 November 2024}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\hypertarget{hallo}{%
+\chapter{Hallo}\label{hallo}}
+
+\hypertarget{wat-is-r}{%
+\chapter{Wat is R?}\label{wat-is-r}}
+
+In deze cursus zal het gratis softwarepakket \emph{R} gebruikt worden. \emph{R} is geschikt voor het manipuleren, statistisch analyseren en visualiseren van data. Daarnaast zullen we gebruikmaken van RStudio, een geïntegreerde ontwikkelomgeving voor R.
+
+\hypertarget{r-software-downloaden}{%
+\section{R software downloaden}\label{r-software-downloaden}}
+
+De nieuwste versie van \emph{R} (versie 4.4.2) kan gedownload worden via volgende link:
+\url{https://cran.r-project.org/bin/windows/base/}.
+
+\hypertarget{rstudio-software-downloaden}{%
+\section{RStudio software downloaden}\label{rstudio-software-downloaden}}
+
+Hierna kan \textbf{RStudio} geïnstalleerd worden via volgende link:
+\url{https://posit.co/download/rstudio-desktop/}.
+
+RStudio wordt gezien als een gebruiksvriendelijkere versie van de standaard R
+software met een modernere interface. De programmeertaal is echter volledig identiek in
+beide programma's.
+
+\hypertarget{waarom-r}{%
+\section{Waarom R?}\label{waarom-r}}
+
+R is een programmeertaal die de laatste jaren heel veel populariteit heeft gewonnen. Dit komt enerzijds door de toegankelijkheid en gebruiksvriendelijkheid naar beginners toe van de programmeertaal zelf, maar anderzijds ook door de vele mogelijkheden die de taal biedt. Zo is het geschikt voor het bewerken, het visualiseren en het analyseren van de data. Op onderstaande figuur is zichtbaar hoe populair de verschillende software talen waren in 2018 voor een bepaalde groep onderzoekers.
+
+\hypertarget{het-r-dashboard}{%
+\section{Het R dashboard}\label{het-r-dashboard}}
+
+Zodra RStudio geopend wordt, verschijnt een 3-delig venster. In de \emph{Environment} (venster rechtsboven) kan je vinden welke variabelen en datasets in de huidige R sessie geladen zijn. Dit is momenteel leeg, maar zal in de loop van deze cursus aangevuld worden. In het paneel rechtsonder staat automatisch het venster \emph{Plots} open waarin figuren verschijnen wanneer dit gevraagd wordt. Dit zijn de twee hulpvensters. In het venster aan de linkerkant staat de \textbf{Console} open waarin alle commando's en output verschijnen die recent zijn uitgevoerd.
+
+In deze Console kan je zelf commando's typen achter de `\textgreater{}'. Bijvoorbeeld, als je de som 3 + 4 willen berekenen, zet je deze in de Console en druk je op ENTER.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{3} \SpecialCharTok{+} \DecValTok{4}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 7
+\end{verbatim}
+
+De uitkomst van deze som komt ook in de Console terecht, onder de ingevoegde bewerking. Ook eventuele foutmeldingen die je later kan tegenkomen, zullen in deze Console verschijnen.
+
+\hypertarget{het-r-script}{%
+\section{Het R script}\label{het-r-script}}
+
+Om te voorkomen dat je commando's steeds opnieuw moet typen in de console, of
+wanneer je de commando's wilt opslaan, kan een \textbf{script} aangemaakt worden.
+
+Om dit te doen, ga je naar File \textgreater{} New File \textgreater{} R Script en dan verschijnt er een vierde
+venster linksboven in de sessie, boven de Console. Dit venster heeft voorlopig als naam `Untitled 1'.
+
+In dit script kan je nu verschillende lijnen code typen die uitgevoerd zullen worden. Bijvoorbeeld, typ onder elkaar de commando's 1 + 1 en 3 + 4. Klik dan op de knop `Run' (dit is het icoontje rechtsboven in je script met het groene pijltje). Een sneltoets om code te runnen is `CTRL + ENTER' (in geval van een Windows toestel) of `Cmd + ENTER' (in geval van Mac toestellen). Deze shortcut (en een overzicht van andere shortcuts) kan je terugvinden in (bijv.) Code \textgreater{} Run Selected Line(s).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{1} \SpecialCharTok{+} \DecValTok{1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{3} \SpecialCharTok{+} \DecValTok{4}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 7
+\end{verbatim}
+
+Om een bestaand R script te openen, klik je op File \textgreater{} Open File en vervolgens navigeer je naar de map waarin het bestand staat en kies je het juise bestand (met extensie .R) dat je wilt openen.
+
+Om het script op te slaan, ga je naar File \textgreater{} Save As en vul je een bestandsnaam naar keuze in. Let wel op dat je als extensie .R kiest.
+
+Het is ook mogelijk om \textbf{commentaar} te typen bij stukjes code. Dit doe je door eerst een \textbf{\#} en daarachter code te typen. Deze lijn wordt dan niet uitgevoerd bij het runnen van de code. Dit kan handig zijn om extra uitleg te schrijven achter bepaalde functies (bijvoorbeeld met betrekking tot de betekenis van diens argumenten) of bij een deel van de code. In het volgende stukje code zal het eerste deel wel uitgevoerd worden, maar het tweede deel niet.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{3} \SpecialCharTok{+} \DecValTok{4}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 7
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# 5 + 6, dit stukje wordt niet uitgevoerd door de \textquotesingle{}\#\textquotesingle{}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{commandos-in-r}{%
+\chapter{Commando's in R}\label{commandos-in-r}}
+
+R kan alles wat een zakrekenmachine ook kan. Enkele voorbeelden worden hieronder gegeven:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{2}\SpecialCharTok{+}\DecValTok{3} \CommentTok{\# Optellen door \textquotesingle{}+\textquotesingle{}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{2}\SpecialCharTok{*}\DecValTok{3} \CommentTok{\# Vermenigvuldigen door \textquotesingle{}*\textquotesingle{}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 6
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{2}\SpecialCharTok{\^{}}\DecValTok{3} \CommentTok{\# Machten berekenen door \textquotesingle{}\^{}\textquotesingle{}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 8
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{9{-}3} \CommentTok{\# Aftrekken door \textquotesingle{}{-}\textquotesingle{}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 6
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{9}\SpecialCharTok{/}\DecValTok{3} \CommentTok{\# Delen door \textquotesingle{}/\textquotesingle{}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3
+\end{verbatim}
+
+De vierkantswortel van \(x\) kan via het \emph{sqrt(x)} commando verkregen worden:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sqrt}\NormalTok{(}\DecValTok{16}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4
+\end{verbatim}
+
+Ook de logaritmische en exponentiële functies kunnen gebruikt worden. De
+exponentiële functie \(e^x\) werkt via het commando \emph{exp(x)} en de logaritmische
+functie \(log_a(x)\) via \emph{log(x, a)}.
+
+De exponentiële functie in 4 geëvalueerd en de logaritme van 3 met grondtal 7 worden
+dus bekomen door:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{exp}\NormalTok{(}\DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 54.59815
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{log}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{7}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.564575
+\end{verbatim}
+
+\emph{Let op}: de functie \(\log(x)\) evalueert standaard (i.e.~als je geen \emph{a} specifieert) de natuurlijke logaritme met grondtal \(e\) in \(x\), m.a.w. is dit eigenlijk de functie \(\ln(x)\). De volgende twee commando's hebben daarom dezelfde oplossing.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{log}\NormalTok{(}\DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.386294
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{log}\NormalTok{(}\DecValTok{4}\NormalTok{, }\FunctionTok{exp}\NormalTok{(}\DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.386294
+\end{verbatim}
+
+Verder kan je de uitkomst van bewerkingen ook opslaan in nieuwe variabelen. Dit
+doe je door `=' of `\textless-' te gebruiken. Als je bijvoorbeeld de uitkomst van een optelling
+wilt toewijzen aan een nieuwe variabele genaamd \emph{nieuw}, kan dat als volgt:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nieuw }\OtherTok{\textless{}{-}} \DecValTok{3} \SpecialCharTok{+} \DecValTok{4}
+\end{Highlighting}
+\end{Shaded}
+
+Merk op dat er geen output verschijnt. In het \emph{Environment} venster rechtsboven verschijnt de nieuwe variabele wel met zijn waarde. Om via de \emph{Console} te kijken wat de waarde van deze nieuwe variabele is, kan je hem gewoon in de Console ingeven:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nieuw}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 7
+\end{verbatim}
+
+Nu zie je dat deze variabele de waarde 7 heeft. Stel dat je de variabele een andere waarde wil geven,
+dan kan je deze gewoon overschrijven met een nieuwe bewerking:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nieuw }\OtherTok{\textless{}{-}} \DecValTok{5}\SpecialCharTok{*}\DecValTok{2}
+\NormalTok{nieuw}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 10
+\end{verbatim}
+
+Nu heeft de variabele een nieuwe waarde gelijk aan 10 en is hij de oude vergeten. Je kan een variabele elke naam geven die je wilt.
+
+\textbf{LET OP:} R is hoofdlettergevoelig. Houd hiermee rekening in het kiezen van namen en het uitvoeren
+van commando's; het is aangewezen om via een consistente manier de naamgeving te kiezen om problemen te vermijden.
+Let verder ook op bij het kiezen van namen die gelijk zijn aan bestaande R functies. Zo wordt de letter \emph{t} ook gebruikt voor de zogeheten student \(t\)-verdeling, is \emph{mean} de naam van een functie in R die het gemiddelde berekent en zijn woorden zoals \emph{TRUE} of \emph{FALSE} de ingebouwde namen voor logische operatoren in R.
+
+Verder is het ook mogelijk om je aangemaakte variabelen in nieuwe bewerkingen te gebruiken:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sqrt}\NormalTok{(nieuw)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3.162278
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nieuw}\SpecialCharTok{*}\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 20
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(nieuw}\SpecialCharTok{+}\NormalTok{nieuw)}\SpecialCharTok{/}\DecValTok{4}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5
+\end{verbatim}
+
+Als je meer info wilt krijgen over een bepaald commando, dan kan je er een `?' voor zetten
+in de Console. Vervolgens wordt er rechtsonder in het venster `Help' een hulpvenster geopend met meer info. Bijvoorbeeld, voor extra informatie over het gebruik van het \emph{log}-commando, kan je het volgende in de Console typen:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{?log}
+\end{Highlighting}
+\end{Shaded}
+
+Om te laten zien waarom het maken van een script handig kan zijn, kan je R eens even afsluiten (vergeet niet op opslaan te klikken als je dit nog niet hebt gedaan!). Als je R nu opnieuw opent, zie je dat het script er nog steeds is, maar dat de Console terug leeg is. Als je je werk dus wilt bewaren, werk je best in een script i.p.v. de Console.
+
+\hypertarget{data-types-en-structuren-in-r}{%
+\chapter{Data types en structuren in R}\label{data-types-en-structuren-in-r}}
+
+Er zijn verschillende \textbf{data types} die gebruikt worden in R:
+
+\begin{itemize}
+\tightlist
+\item
+  Numeric
+\item
+  Character
+\item
+  Factor
+\item
+  Logical
+\end{itemize}
+
+Elementen van bovenstaande datatypes kunnen gecombineerd worden in \textbf{data structuren}:
+
+\begin{itemize}
+\tightlist
+\item
+  Vector
+\item
+  Data Frame
+\item
+  Matrix
+\item
+  List
+\end{itemize}
+
+\hypertarget{numeric-data-type}{%
+\section{Numeric data type}\label{numeric-data-type}}
+
+\textbf{Numerieke elementen} zijn elementen met een getalwaarde. Met numerieke elementen kunnen bewerkingen uitgevoerd worden die opnieuw resulteren in een nieuw numeriek element.
+
+Om te controleren welk data type een bepaalde variabele heeft, kan de \emph{str} functie
+gebruikt worden.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a }\OtherTok{\textless{}{-}} \DecValTok{5}
+\NormalTok{b }\OtherTok{\textless{}{-}} \DecValTok{6}
+\FunctionTok{str}\NormalTok{(a)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  num 5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{str}\NormalTok{(b)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  num 6
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a }\SpecialCharTok{+}\NormalTok{ b }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 11
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{str}\NormalTok{(a }\SpecialCharTok{+}\NormalTok{ b)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  num 11
+\end{verbatim}
+
+Binnen de klasse van numerieke elementen is er echter nog een opsplitsing van twee data types. Zo maakt R een onderscheid tussen gehele getallen en in het algemeen reële getallen die dus ook decimalen kunnen bevatten. R beschouwt getallen standaard als reëele getallen. Het element heeft dan data type \emph{dbl} of \emph{double}, wat staat voor \emph{double precision}, duidend op het feit dat het ook decimale getallen kan aannemen als waarde. Gehele getallen, hebben het data type \emph{int} (van het Engels: integer). Zij worden gespecifieerd door middel van de letter \emph{L} achter het getal te plaatsen. Om het exacte data type na te gaan, kan de functie \emph{typeof()} gebruikt worden. Een voorbeeld van de twee verschillende data types:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{c }\OtherTok{\textless{}{-}}\NormalTok{ 1000L }\CommentTok{\#Dit beschouwt R als een geheel getal.}
+\FunctionTok{typeof}\NormalTok{(c)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "integer"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{q }\OtherTok{\textless{}{-}} \DecValTok{1000} \CommentTok{\#Dit beschouwt R als een reëel getal.}
+\FunctionTok{typeof}\NormalTok{(q)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "double"
+\end{verbatim}
+
+In het algemeen maakt dit verschil niet heel veel uit als je bewerkingen wilt uitvoeren. Om elementen van het type \emph{dbl} naar het type \emph{int} om te zetten, kan je het commando \emph{as.integer} gebruiken. Om elementen van het type \emph{int} naar het type \emph{dbl} om te zetten, kan je het commando \emph{as.numeric} gebruiken.
+
+\hypertarget{character-data-type}{%
+\section{Character data type}\label{character-data-type}}
+
+\textbf{Characters} zijn elementen in de vorm van letters of stukken tekst. Deze elementen
+worden altijd omgeven met aanhalingstekens.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{d }\OtherTok{=} \StringTok{"Goedemiddag"}
+\NormalTok{f }\OtherTok{=} \StringTok{"allemaal"}
+
+\FunctionTok{str}\NormalTok{(d)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  chr "Goedemiddag"
+\end{verbatim}
+
+Merk op dat met characters geen bewerkingen uitgevoerd kunnen worden.
+Dit zou resulteren in een Error:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{d }\SpecialCharTok{+}\NormalTok{ f}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Error in d + f: non-numeric argument to binary operator
+\end{verbatim}
+
+Het is wel mogelijk om verschillende characters te printen. Dit gebeurt
+via de \emph{paste} functie waarin je de elementen specifieert die je naast
+elkaar wilt printen en waarin je in het argument \emph{sep=} specifieert welke scheiding je
+wilt tussen de verschillende elementen.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{paste}\NormalTok{(d, f, }\AttributeTok{sep=}\StringTok{\textquotesingle{},\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Goedemiddag,allemaal"
+\end{verbatim}
+
+\hypertarget{vector-data-structuur}{%
+\section{Vector data structuur}\label{vector-data-structuur}}
+
+Elementen van de 2 vorige data types, numeriek en character, kunnen ook in een
+\textbf{vector} gestoken worden. Een vector is een 1-dimensionaal data structuur object dat enkel elementen bevat van hetzelfde data type. Je kan een vector aanmaken met behulp van `c()' waarbij je tussen de haakjes alle elementen in je vector opsomt, gescheiden door een komma.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{g }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DecValTok{10}\NormalTok{)}
+\NormalTok{h }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}Aap\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Mug\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Olifant\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Een vector die enkel numerieke elementen bevat, kan ook in bewerkingen gebruikt worden.
+De bewerkingen worden dan elementsgewijs uitgevoerd.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{g}\SpecialCharTok{*}\DecValTok{4}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  4 16 28 40
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{g}\SpecialCharTok{\^{}}\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]   1  16  49 100
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{g}\DecValTok{{-}4}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -3  0  3  6
+\end{verbatim}
+
+Het is ook mogelijk om alle gehele getallen tussen 2 grenzen meteen te specifiëren.
+Dit kan met behulp van het dubbel punt-commando. Zo zal het commando \emph{1:5} alle getallen
+van 1 tot en met 5 geven.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m }\OtherTok{\textless{}{-}} \DecValTok{1}\SpecialCharTok{:}\DecValTok{5}
+\NormalTok{m}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1 2 3 4 5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n }\OtherTok{\textless{}{-}} \DecValTok{67}\SpecialCharTok{:}\DecValTok{98}
+\NormalTok{n}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91
+## [26] 92 93 94 95 96 97 98
+\end{verbatim}
+
+Merk op dat je bij uitzondering voor dit specifieke commando niet het \emph{c()} commando nodig hebt.
+
+Daarnaast kan je ook een sequentie van getallen als vector creëren met daarin een minimum, maximum en stapgrootte (bijvoorbeeld: alle getallen tussen 0 en 20 met stapgrootte 2 of alle getallen tussen 4 en 50 met stapgrootte 6):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{s }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\AttributeTok{from =} \DecValTok{0}\NormalTok{, }\AttributeTok{to =} \DecValTok{20}\NormalTok{, }\AttributeTok{by =} \DecValTok{2}\NormalTok{)}
+\NormalTok{s}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1]  0  2  4  6  8 10 12 14 16 18 20
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{seq}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{50}\NormalTok{, }\DecValTok{6}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  4 10 16 22 28 34 40 46
+\end{verbatim}
+
+Om een aftellende vector te verkrijgen, start je met het grootste getal te specifiëren. Vervolgens specifieer je bij de stapgrootte nu een minteken voor het getal om aan te duiden dat je stappen wilt zetten van groot naar klein. Een voorbeeld:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{seq}\NormalTok{(}\DecValTok{40}\NormalTok{, }\DecValTok{7}\NormalTok{, }\SpecialCharTok{{-}}\DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 40 36 32 28 24 20 16 12  8
+\end{verbatim}
+
+\hypertarget{matrix-data-structuur}{%
+\section{Matrix data structuur}\label{matrix-data-structuur}}
+
+Een \textbf{matrix} data structuur is een 2-dimensionaal object dat, net zoals vectoren, enkel elementen van eenzelfde data type bevat. Een matrix wordt gemaakt via de \emph{matrix()} functie waarin gespecifieerd wordt welke waarden in de matrix moeten komen en hoeveel rijen en/of kolommen de matrix heeft.
+In het volgende voorbeeld wordt een matrix met elementen 1 tot en met 12 gemaakt waarbij de matrix 4 rijen heeft (en dus 3 kolommen).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{matrix}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{12}\NormalTok{, }\AttributeTok{nrow =} \DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3]
+## [1,]    1    5    9
+## [2,]    2    6   10
+## [3,]    3    7   11
+## [4,]    4    8   12
+\end{verbatim}
+
+Merk op dat de matrix de elementen kolomgewijs toewijst. Stel dat we dit rijgewijs willen doen (dus zodat 1 2 3 in de eerste rij staan in plaats van de eerste kolom), kan het extra argument \emph{byrow = TRUE} gebruikt worden.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{matrix}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{12}\NormalTok{, }\AttributeTok{nrow =} \DecValTok{4}\NormalTok{, }\AttributeTok{byrow =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3]
+## [1,]    1    2    3
+## [2,]    4    5    6
+## [3,]    7    8    9
+## [4,]   10   11   12
+\end{verbatim}
+
+\hypertarget{list-data-structuur}{%
+\section{List data structuur}\label{list-data-structuur}}
+
+Een \textbf{list} data structuur is een combinatie van andere soorten structuren.
+Zo kan het elementen van verschillende soorten data types bevatten, maar ook andere data structuren zoals een vector, matrix of verschillende andere lists.
+In het volgende voorbeeld beschouwen we een lijst met een numerieke waarde, vector en matrix als elementen.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mijnlijst }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(}\AttributeTok{a =} \DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{, }\AttributeTok{b =} \FunctionTok{matrix}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{9}\NormalTok{, }\AttributeTok{ncol=}\DecValTok{3}\NormalTok{), }\AttributeTok{c =} \DecValTok{10}\NormalTok{)}
+\NormalTok{mijnlijst}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $a
+## [1] 1 2 3 4 5
+## 
+## $b
+##      [,1] [,2] [,3]
+## [1,]    1    4    7
+## [2,]    2    5    8
+## [3,]    3    6    9
+## 
+## $c
+## [1] 10
+\end{verbatim}
+
+Individuele elementen van een lijst kunnen opgeroepen worden zoals een variabele in een dataframe met het \emph{\$} teken, ofwel via \([[k]]\) waarbij het \(k\)-de element van de list wordt opgeroepen.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mijnlijst}\SpecialCharTok{$}\NormalTok{b}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3]
+## [1,]    1    4    7
+## [2,]    2    5    8
+## [3,]    3    6    9
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mijnlijst[[}\DecValTok{2}\NormalTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3]
+## [1,]    1    4    7
+## [2,]    2    5    8
+## [3,]    3    6    9
+\end{verbatim}
+
+Lijsten zijn uiterst handig bij het gebruik van functies waar meerdere elementen van verschillende types als uitvoer moeten gegeven worden. Het gebruik van lijsten is bovendien computationieel efficiënt.
+
+\hypertarget{dataframe-data-structuur}{%
+\section{Dataframe data structuur}\label{dataframe-data-structuur}}
+
+Een vierde en laatste belangrijke data structuur is de \textbf{dataframe}. Dit is een 2-dimensionele dataset die in de kolommen de variabelen weergeeft en in de rijen de observaties (individuen, dieren, \ldots) zelf. In het volgende voorbeeld wordt een dataframe gemaakt met daarin de namen van 3 personen en hun leeftijd. Dit dataframe bevat dus een character en numeriek type variabele.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dataframe1 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{ (}
+  \AttributeTok{Naam =} \FunctionTok{c}\NormalTok{(}\StringTok{"Jan"}\NormalTok{, }\StringTok{"Marie"}\NormalTok{, }\StringTok{"Koen"}\NormalTok{),}
+  \AttributeTok{Leeftijd =} \FunctionTok{c}\NormalTok{(}\DecValTok{22}\NormalTok{, }\DecValTok{15}\NormalTok{, }\DecValTok{19}\NormalTok{)}
+\NormalTok{)}
+
+\NormalTok{dataframe1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    Naam Leeftijd
+## 1   Jan       22
+## 2 Marie       15
+## 3  Koen       19
+\end{verbatim}
+
+Op dataframes (en hoe je die zelf kan maken of inlezen) wordt later nog teruggekomen.
+
+\hypertarget{factor-data-type}{%
+\section{Factor data type}\label{factor-data-type}}
+
+Een \textbf{factor} element is een categorische variabele. Oorspronkelijk kan dit element een numeriek of character type geweest zijn, dat omgezet is naar een factor variabele.
+
+Er wordt nu eerst een vector gecreëerd met numerieke elementen en een vector met character elementen.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{8}\NormalTok{)}
+\NormalTok{b }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{"Groen"}\NormalTok{, }\StringTok{"Blauw"}\NormalTok{, }\StringTok{"Rood"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Vervolgens kunnen deze vectoren omgezet worden naar variabelen van het type factor:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{factor1 }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(a)}
+\NormalTok{factor2 }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(b)}
+
+\FunctionTok{str}\NormalTok{(a)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  num [1:3] 1 4 8
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{str}\NormalTok{(factor1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  Factor w/ 3 levels "1","4","8": 1 2 3
+\end{verbatim}
+
+Merk ook op dat je geen bewerkingen meer kan doen met een numerieke variabele die als factor gebruikt wordt. Dit produceert opnieuw een Error:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a}\SpecialCharTok{*}\DecValTok{4} \CommentTok{\# a is geen factor en dit gaat dus wel}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  4 16 32
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{factor1}\SpecialCharTok{*}\DecValTok{4} \CommentTok{\# factor1 is van het data type factor en dit gaat dus niet}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] NA NA NA
+\end{verbatim}
+
+\hypertarget{logical-data-type}{%
+\section{Logical data type}\label{logical-data-type}}
+
+Een \textbf{logical} element kan enkel 2 mogelijke waarden aannemen: \emph{True} of \emph{False}. Dit data type wordt regelmatig gebruikt of verkregen bij het vergelijken van variabelen of het nagaan van logische uitdrukkingen.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a }\OtherTok{\textless{}{-}} \DecValTok{5} \SpecialCharTok{\textgreater{}} \DecValTok{3} \CommentTok{\# 5 is inderdaad groter dan 3, dus resulteert in \textquotesingle{}TRUE\textquotesingle{}}
+\NormalTok{a}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{b }\OtherTok{\textless{}{-}} \DecValTok{2}\SpecialCharTok{*}\DecValTok{3} \SpecialCharTok{==} \DecValTok{6}
+
+\NormalTok{c }\OtherTok{\textless{}{-}}\NormalTok{ a }\SpecialCharTok{==}\NormalTok{ b }\CommentTok{\# a en b waren beiden juist en hebben dus beide de waarde \textquotesingle{}TRUE\textquotesingle{}}
+\NormalTok{c}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+Merk op dat het testen of twee variabelen gelijk zijn gebeurd met een dubbel gelijkheidsteken `=='. Dit is om verwarring te vermijden met het creëren van variabelen, wat gebeurt met slechts een enkel gelijkheidsteken `='.
+
+Er zijn nog verschillende andere vergelijkingen die gemaakt kunnen worden:
+
+\begin{itemize}
+\item
+  \textless, \textgreater, \(\leq\), \(\geq\) voor ongelijkheden
+\item
+  == voor gelijkheden
+\item
+  != voor het testen of 2 elementen of vectoren niet gelijk zijn
+\item
+  combinaties:
+
+  \begin{itemize}
+  \item
+    \&: EN (testen of een uitspraak voldoet aan meer dan 1 voorwaarde)
+  \item
+    \textbar: OF (testen of een uitspraak voldoet aan minstens 1 voorwaarde)
+  \item
+    !: NIET (testen of een voorwaarde niet voldoet aan een bepaalde voorwaarde)
+  \end{itemize}
+\end{itemize}
+
+Het is belangrijk te vermelden dat bovenstaande operatoren elementsgewijs werken. Dit wil zeggen dat de operator, bij het vergelijken van data types met meerdere elementen, ieder element van een object zal vergelijken met een element op dezelfde positie van een ander element. Bijvoorbeeld, we willen weten welke elementen van twee vectoren aan elkaar gelijk zijn:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{c1 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{)}
+\NormalTok{c2 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{8}\NormalTok{,}\DecValTok{9}\NormalTok{,}\DecValTok{10}\NormalTok{)}
+
+\NormalTok{c1 }\SpecialCharTok{==}\NormalTok{ c2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] FALSE  TRUE FALSE FALSE FALSE
+\end{verbatim}
+
+De output vertelt ons dat de elementen van de vectoren verschillen, behalve het tweede element. In het geval dat het doel is om gelijkheid van een vectoren (of andere data types) in hun geheel te testen, kunnen we ook gebruik maken van de functie \emph{identical()}. Deze functie vertelt ons onmiddellijk of de vectoren gelijk zijn, maar geeft geen verdere info over welke elementen verschillen.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{identical}\NormalTok{(c1,c2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] FALSE
+\end{verbatim}
+
+\hypertarget{een-afsluiter}{%
+\chapter{Een afsluiter}\label{een-afsluiter}}
+
+Dit document geeft een korte inleiding tot de programmeertaal van R. Enkele van de vele mogelijke basis functies werden geïllustreerd, maar hier stopt het zeker niet. Er zijn bijvoorbeeld nog meer dan 20 000 R packages die je kan installeren, elk met hun eigen handige functies voor specifieke doelen. Twee handige packages die vaak gebruikt worden en zeker de moeite zijn om eens verder te bekijken, zijn de volgende. Om bijvoorbeeld mooiere grafieken te maken, kan je de functies in het \emph{ggplot2}-package gebruiken. Om makkelijk data sets te bewerken of te filteren, worden de functies in het \emph{dplyr}-package vaak gebruikt.
+
+\end{document}

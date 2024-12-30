@@ -1,0 +1,4 @@
+bookdown::gitbook:
+  config:
+    toolbar:
+      download: 'docs/website.pdf'

@@ -203,7 +203,7 @@ beide programma’s.</p>
 <h2><span class="header-section-number">2.4</span> Het R dashboard<a href="wat-is-r.html#het-r-dashboard" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Zodra RStudio geopend wordt, verschijnt een 3-delig venster. In de <em>Environment</em> (venster rechtsboven) kan je vinden welke variabelen en datasets in de huidige R sessie geladen zijn. Dit is momenteel leeg, maar zal in de loop van deze cursus aangevuld worden. In het paneel rechtsonder staat automatisch het venster <em>Plots</em> open waarin figuren verschijnen wanneer dit gevraagd wordt. Dit zijn de twee hulpvensters. In het venster aan de linkerkant staat de <strong>Console</strong> open waarin alle commando’s en output verschijnen die recent zijn uitgevoerd.</p>
 <p>In deze Console kan je zelf commando’s typen achter de ‘&gt;’. Bijvoorbeeld, als je de som 3 + 4 willen berekenen, zet je deze in de Console en druk je op ENTER.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="wat-is-r.html#cb2-1" tabindex="-1"></a><span class="dv">3</span> <span class="sc">+</span> <span class="dv">4</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="wat-is-r.html#cb1-1" tabindex="-1"></a><span class="dv">3</span> <span class="sc">+</span> <span class="dv">4</span></span></code></pre></div>
 <pre><code>## [1] 7</code></pre>
 <p>De uitkomst van deze som komt ook in de Console terecht, onder de ingevoegde bewerking. Ook eventuele foutmeldingen die je later kan tegenkomen, zullen in deze Console verschijnen.</p>
 </div>
@@ -214,16 +214,16 @@ wanneer je de commando’s wilt opslaan, kan een <strong>script</strong> aangema
 <p>Om dit te doen, ga je naar File &gt; New File &gt; R Script en dan verschijnt er een vierde
 venster linksboven in de sessie, boven de Console. Dit venster heeft voorlopig als naam ‘Untitled 1’.</p>
 <p>In dit script kan je nu verschillende lijnen code typen die uitgevoerd zullen worden. Bijvoorbeeld, typ onder elkaar de commando’s 1 + 1 en 3 + 4. Klik dan op de knop ‘Run’ (dit is het icoontje rechtsboven in je script met het groene pijltje). Een sneltoets om code te runnen is ‘CTRL + ENTER’ (in geval van een Windows toestel) of ‘Cmd + ENTER’ (in geval van Mac toestellen). Deze shortcut (en een overzicht van andere shortcuts) kan je terugvinden in (bijv.) Code &gt; Run Selected Line(s).</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="wat-is-r.html#cb4-1" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="wat-is-r.html#cb3-1" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="wat-is-r.html#cb6-1" tabindex="-1"></a><span class="dv">3</span> <span class="sc">+</span> <span class="dv">4</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="wat-is-r.html#cb5-1" tabindex="-1"></a><span class="dv">3</span> <span class="sc">+</span> <span class="dv">4</span></span></code></pre></div>
 <pre><code>## [1] 7</code></pre>
 <p>Om een bestaand R script te openen, klik je op File &gt; Open File en vervolgens navigeer je naar de map waarin het bestand staat en kies je het juise bestand (met extensie .R) dat je wilt openen.</p>
 <p>Om het script op te slaan, ga je naar File &gt; Save As en vul je een bestandsnaam naar keuze in. Let wel op dat je als extensie .R kiest.</p>
 <p>Het is ook mogelijk om <strong>commentaar</strong> te typen bij stukjes code. Dit doe je door eerst een <strong>#</strong> en daarachter code te typen. Deze lijn wordt dan niet uitgevoerd bij het runnen van de code. Dit kan handig zijn om extra uitleg te schrijven achter bepaalde functies (bijvoorbeeld met betrekking tot de betekenis van diens argumenten) of bij een deel van de code. In het volgende stukje code zal het eerste deel wel uitgevoerd worden, maar het tweede deel niet.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="wat-is-r.html#cb8-1" tabindex="-1"></a><span class="dv">3</span> <span class="sc">+</span> <span class="dv">4</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="wat-is-r.html#cb7-1" tabindex="-1"></a><span class="dv">3</span> <span class="sc">+</span> <span class="dv">4</span></span></code></pre></div>
 <pre><code>## [1] 7</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="wat-is-r.html#cb10-1" tabindex="-1"></a><span class="co"># 5 + 6, dit stukje wordt niet uitgevoerd door de &#39;#&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="wat-is-r.html#cb9-1" tabindex="-1"></a><span class="co"># 5 + 6, dit stukje wordt niet uitgevoerd door de &#39;#&#39;</span></span></code></pre></div>
 
 </div>
 </div>
@@ -275,7 +275,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": null,
+"download": ["website.pdf"],
 "search": {
 "engine": "fuse",
 "options": null
